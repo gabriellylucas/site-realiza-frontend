@@ -66,30 +66,66 @@ const Section: React.FC = () => {
 
         
         <div className="gallery">
-           <div className="card wide">
-            <img src={industrial} alt="Incêndios industriais" />
-          </div>
+  {/* Card 1: Industrial */}
+  <div className="card wide">
+    <img src={industrial} alt="Incêndios industriais" />
+    <div className="card-overlay">
+      <h3>Incêndios Industriais</h3>
+      <p>Proteção avançada para complexos fabris e logística.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
 
-           <div className="card wide">
-            <img src={florestal} alt="Incêndios florestais" />
-          </div>
+  {/* Card 2: Florestal */}
+  <div className="card wide">
+    <img src={florestal} alt="Incêndios florestais" />
+    <div className="card-overlay">
+      <h3>Incêndios Florestais</h3>
+      <p>Solução nanotecnológica para ambientes naturais.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
 
-           <div className="card wide">
-            <img src={urbanos} alt="Incêndios urbanos" />
-          </div>
+  {/* Card 3: Urbanos */}
+  <div className="card wide">
+    <img src={urbanos} alt="Incêndios urbanos" />
+    <div className="card-overlay">
+      <h3>Incêndios Urbanos</h3>
+      <p>Eficiência em áreas densas e estruturas civis.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
 
-          <div className="card wide">
-            <img src={classea} alt="Classe A" />
-          </div>
+  {/* Card 4: Classe A */}
+  <div className="card wide">
+    <img src={classea} alt="Classe A" />
+    <div className="card-overlay">
+      <h3>Incêndios de Classe A</h3>
+      <p>Papel, madeira, tecidos e materiais sólidos.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
 
-          <div className="card wide">
-            <img src={classeb} alt="Classe B" />
-          </div>
+  {/* Card 5: Classe B */}
+  <div className="card wide">
+    <img src={classeb} alt="Classe B" />
+    <div className="card-overlay">
+      <h3>Incêndios de Classe B</h3>
+      <p>Líquidos inflamáveis e combustíveis.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
 
-          <div className="card wide">
-            <img src={classed} alt="Classe D" />
-          </div>
-        </div>
+  {/* Card 6: Classe D */}
+  <div className="card wide">
+    <img src={classed} alt="Classe D" />
+    <div className="card-overlay">
+      <h3>Incêndios de Classe D</h3>
+      <p>Metais combustíveis e ligas leves.</p>
+      <button>Saiba Mais</button>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );
