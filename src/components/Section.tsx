@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import industrial from "../assets/industrial.png";
 import florestal from "../assets/florestal.png";
 import urbanos from "../assets/urbanos.png";
@@ -72,7 +73,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios Industriais</h3>
       <p>Proteção avançada para complexos fabris e logística.</p>
-      <button>Saiba Mais</button>
+    <Link to="/industrial" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 

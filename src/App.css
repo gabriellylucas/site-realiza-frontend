@@ -245,21 +245,28 @@ body, html {
   line-height: 1.4;
 }
 
-.card-overlay button {
+/* Atualize este seletor para incluir a classe do Link */
+.card-overlay .btn-saiba-mais {
   width: fit-content;
   background: transparent;
-  color: white;
+  color: white !important; /* Força o branco para ignorar a cor padrão de link */
   border: 1px solid white;
   padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
+  text-decoration: none; /* Remove o sublinhado */
+  display: inline-block; /* Necessário para o padding funcionar em tags <a> */
+  font-size: 0.9rem;
+  margin-bottom: 5px;
 }
 
-.card-overlay button:hover {
+/* Efeito de Hover ajustado */
+.card-overlay .btn-saiba-mais:hover {
   background: white;
-  color: black;
+  color: black !important;
+  transform: scale(1.05);
 }
 
 
@@ -392,4 +399,16 @@ body, html {
     flex-direction: column;
     text-align: center;
   }
+}
+
+
+body:has(.industrial) {
+  background-color: #0a0a0a !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+body:has(.industrial) .navbar {
+  display: none;
 }
