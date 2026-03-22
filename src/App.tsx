@@ -9,6 +9,7 @@ import Florestal from "./components/Florestal";
 import Urbanos from "./components/Urbanos";
 import IncendioA from "./components/IncendioA";
 import IncendioB from "./components/IncendioB";
+import IncendioD from "./components/IncendioD";
 import "./App.css";
 
 function Home() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/urbanos" element={<Urbanos/>} />
         <Route path="/incendioa" element={<IncendioA />} />
         <Route path="/incendiob" element={<IncendioB />} />
+        <Route path="/incendiod" element={<IncendioD />} />
       </Routes>
     </BrowserRouter>
   );

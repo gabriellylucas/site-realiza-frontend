@@ -129,11 +129,11 @@ const Section: React.FC = () => {
 
   {/* Card 6: Classe D */}
   <div className="card wide">
-    <img src={classed} alt="Classe D" />
+    <img src={classed} alt="Incêndios de Classe D" />
     <div className="card-overlay">
       <h3>Incêndios de Classe D</h3>
       <p>Metais combustíveis e ligas leves.</p>
-      <Link to="/classed" className="btn-saiba-mais">
+      <Link to="/incendiod" className="btn-saiba-mais">
                 Saiba Mais
               </Link>
     </div>
