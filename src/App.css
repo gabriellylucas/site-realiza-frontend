@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -6,115 +5,247 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body, html {
+html, body {
   width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
   background-color: #f5f5f5;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* NAVBAR */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 50px;
   background-color: rgb(0, 0, 0);
   color: white;
-  padding: 25px 10%; 
+  padding: 25px 5%;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .navbar ul {
   display: flex;
   list-style: none;
   gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar ul li {
-  font-size: 18px;
+  font-size: 20px; 
   font-weight: 500;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease; 
+  color: white; 
 }
 
 .navbar ul li:hover {
-  color: #297d7e;
+  color: white;
+  transform: scale(1.05); 
 }
 
 /* BANNER */
 .banner {
-  padding: 100px 20px;
-  text-align: center;
-  width: 100vw; 
-  height: 88vh; 
-  margin-bottom: 100px;
-
-  background-size: cover;     
-  background-position: center;  
-  background-repeat: no-repeat; 
-
+  width: 100%;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #000000, #0a1a2f);
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: brightness(1.5);
+  padding: 0px 8%;
+  overflow: hidden;
+  position: relative;
 }
 
-.banner h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
+.banner-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.banner button {
-  background-color: #297d7e;
-  border: none;
-  padding: 15px 30px;
+.banner-text {
+  flex: 1.2;
+  max-width: 700px;
+}
+
+
+.banner-text h1 {
+  font-size: 64px;
+  line-height: 1.2;
+  margin-bottom: 28px;
+  font-weight: 800;
   color: white;
+}
+
+
+.subtitle {
+  font-size: 24px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.subtitle strong {
+  color: #ff6a00;
   font-weight: bold;
+  font-size: 28px;
+}
+
+
+.solutions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.solutions-list li {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.solutions-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ff6a00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-saiba-mais {
+  background: transparent;
+  color: white;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid white;
+  border-radius: 40px;
   cursor: pointer;
-  border-radius: 6px;
-  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-saiba-mais:hover {
+  background: white;
+  border-color: white;
+  color: #0a1a2f;
+  transform: translateY(-2px);
+}
+
+.btn-orcamento {
+  background: #ff6a00;
+  color: white;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-orcamento:hover {
+  background: #e05f00;
+  transform: translateY(-2px);
+}
+
+.banner-image {
+  flex: 1;
+  max-width: 550px;
+  position: relative;
+}
+
+.banner-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.banner-image img:hover {
+  transform: scale(1.02);
 }
 
 /* SERVIÇOS */
 .servicos {
-  padding: 80px 10%;
+  padding: 80px 5%;
   text-align: center;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .servicos h2 {
   margin-bottom: 50px;
-  color: #1e293b; 
+  color: #1e293b;
   font-size: 32px;
 }
-
 
 .servicos div {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 25px;
 }
 
-.servicos p {
+.card-servico {
   background-color: white;
   padding: 40px 20px;
   border-radius: 12px;
-  width: 220px; 
+  width: 220px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  color: #334155;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-servico:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 /* SECTION */
 .section {
   background: #f5f5f5;
-  padding: 60px 20px;
+  padding: 60px 5%;
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
 .container {
+  padding-top: 120px;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .content {
@@ -123,9 +254,9 @@ body, html {
   flex-wrap: wrap;
 }
 
-
 .left {
   flex: 1;
+  min-width: 250px;
 }
 
 .left h1 {
@@ -155,10 +286,10 @@ body, html {
   font-weight: bold;
 }
 
-
 .right {
   flex: 1;
   color: #222;
+  min-width: 250px;
 }
 
 .right h2 {
@@ -187,19 +318,20 @@ body, html {
   font-weight: bold;
 }
 
-
+/* GALLERY */
 .gallery {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  width: 100%;
 }
 
 .card {
   position: relative;
-  overflow: hidden; 
-  border-radius: 15px; 
-  height: 300px; 
+  overflow: hidden;
+  border-radius: 15px;
+  height: 300px;
   cursor: pointer;
 }
 
@@ -208,9 +340,8 @@ body, html {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s ease; 
+  transition: transform 0.6s ease;
 }
-
 
 .card-overlay {
   position: absolute;
@@ -218,19 +349,16 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.75); 
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   padding: 25px;
   box-sizing: border-box;
-  
-  
   opacity: 0;
-  transform: translateY(15px); 
+  transform: translateY(15px);
   transition: all 0.4s ease;
 }
-
 
 .card-overlay h3 {
   color: white;
@@ -245,90 +373,40 @@ body, html {
   line-height: 1.4;
 }
 
-/* Atualize este seletor para incluir a classe do Link */
 .card-overlay .btn-saiba-mais {
   width: fit-content;
   background: transparent;
-  color: white !important; /* Força o branco para ignorar a cor padrão de link */
+  color: white !important;
   border: 1px solid white;
   padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
-  text-decoration: none; /* Remove o sublinhado */
-  display: inline-block; /* Necessário para o padding funcionar em tags <a> */
+  text-decoration: none;
+  display: inline-block;
   font-size: 0.9rem;
   margin-bottom: 5px;
 }
 
-/* Efeito de Hover ajustado */
 .card-overlay .btn-saiba-mais:hover {
   background: white;
   color: black !important;
   transform: scale(1.05);
 }
 
-
 .card:hover .card-overlay {
-  opacity: 1; 
-  transform: translateY(0); 
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover img {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
-
-@media (max-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr; 
-  }
-}
-
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .banner h1 {
-    font-size: 28px;
-  }
-}
-
-.icon-container {
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.card-servico {
-  background-color: white;
-  padding: 40px 20px;
-  border-radius: 12px;
-  width: 220px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-servico:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
+/* SOBRE */
 .sobre {
-  padding: 80px 10%;
+  padding: 80px 5%;
   background-color: #ffffff;
   width: 100%;
 }
@@ -338,12 +416,14 @@ body, html {
   align-items: center;
   justify-content: space-between;
   gap: 50px;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .sobre-texto {
   flex: 1;
+  min-width: 250px;
 }
 
 .sobre-texto h2 {
@@ -362,6 +442,7 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 200px;
 }
 
 .stat {
@@ -393,23 +474,174 @@ body, html {
   align-items: center;
 }
 
+.icon-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1200px) {
+  .banner-container {
+    gap: 50px;
+  }
+  
+  .banner-text h1 {
+    font-size: 54px;
+  }
+  
+  .banner-image {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .banner-text h1 {
+    font-size: 48px;
+  }
+  
+  .subtitle {
+    font-size: 22px;
+  }
+  
+  .subtitle strong {
+    font-size: 26px;
+  }
+  
+  .solutions-list li {
+    font-size: 16px;
+  }
+  
+  .banner-image {
+    max-width: 450px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .banner {
+    min-height: auto;
+    padding: 50px 5%;
+  }
+  
+  .banner-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .banner-text {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .banner-text h1 {
+    font-size: 36px;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+  }
+  
+  .subtitle strong {
+    font-size: 24px;
+  }
+  
+  .solutions-list li {
+    font-size: 15px;
+    text-align: left;
+  }
+  
+  .buttons {
+    justify-content: center;
+  }
+  
+  .btn-saiba-mais, 
+  .btn-orcamento {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+  
+  .banner-image {
+    max-width: 100%;
+  }
+  
+  .content {
+    flex-direction: column;
+  }
+  
   .sobre-container {
     flex-direction: column;
     text-align: center;
   }
+  
+  .sobre-stats {
+    width: 100%;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .servicos div {
+    justify-content: center;
+  }
 }
 
+@media (max-width: 480px) {
+  .banner-text h1 {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+  }
+  
+  .subtitle strong {
+    font-size: 22px;
+  }
+  
+  .solutions-list li {
+    font-size: 14px;
+  }
+  
+  .btn-saiba-mais, 
+  .btn-orcamento {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+  
+  .left p, .right ul {
+    font-size: 16px;
+  }
+  
+  .card {
+    height: 250px;
+  }
+}
 
+/* ESTILOS INDUSTRIAIS */
 body:has(.industrial) {
   background-color: #0a0a0a !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-
 body:has(.industrial) .navbar {
   display: none;
 }
-
