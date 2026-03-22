@@ -15,21 +15,22 @@ const IncendioA = () => {
         <h1>Incêndios de Classe A</h1>
 
         <p className="descricao">
-          Ambientes florestais apresentam alto risco de incêndio devido à vegetação densa,
-          condições climáticas adversas e difícil acesso para combate.
+          Incêndios de Classe A envolvem materiais sólidos combustíveis como madeira,
+          papel, tecido, borracha e plásticos. São os tipos mais comuns em residências,
+          comércios e ambientes urbanos.
         </p>
 
         {/* BOX PRINCIPAL */}
         <div className="box">
-          <h2>Nanotecnologia de Combate a Incêndios Florestais</h2>
+          <h2>Tecnologia no Combate a Incêndios de Classe A</h2>
           <p>
-            Os incêndios florestais se espalham rapidamente, impulsionados por fatores naturais como vento, 
-            vegetação seca e altas temperaturas, causando impactos severos ao meio ambiente e à biodiversidade.
-            O controle eficaz dessas ocorrências exige soluções que atuem rapidamente e, ao mesmo tempo, preservem os ecossistemas.
-            O Realiza Antichamas utiliza uma formulação biodegradável que combate o fogo de forma eficiente sem agredir o meio ambiente.
-            Sua ação promove resfriamento imediato e cria uma barreira que reduz a propagação das chamas, 
-            protegendo áreas extensas e evitando novos focos de incêndio.
-            
+            Incêndios de Classe A são caracterizados pela queima de materiais sólidos que deixam resíduos,
+            como madeira e papel, e tendem a se propagar facilmente se não forem controlados rapidamente.
+            Nossa solução atua de forma eficiente no combate a esse tipo de incêndio,
+            promovendo 
+            <strong className="text-laranja"> resfriamento intenso </strong> e 
+            <strong className="text-azul"> controle da combustão</strong>, reduzindo a propagação das chamas
+            e garantindo maior segurança em ambientes residenciais, comerciais e urbanos.
           </p>
         </div>
 
@@ -41,48 +42,48 @@ const IncendioA = () => {
             <div className="card-icon">
               <FaFireExtinguisher />
             </div>
-            <h4>10x Mais Eficiente</h4>
-            <p>Tecnologia de nanotecnologia superior à água convencional</p>
+            <h4>Extinção Eficiente</h4>
+            <p>Combate eficaz em materiais sólidos como madeira, papel e tecidos</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaShieldAlt />
             </div>
-            <h4>Segurança Máxima</h4>
-            <p>Proteção completa para equipes de brigadistas e fauna local</p>
+            <h4>Segurança Elevada</h4>
+            <p>Reduz riscos para pessoas e protege ambientes residenciais e comerciais</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaLeaf />
             </div>
-            <h4>Sustentável</h4>
-            <p>Não corrosivo, biodegradável e seguro ao meio ambiente</p>
+            <h4>Baixo Impacto</h4>
+            <p>Produto seguro que minimiza danos ao ambiente e às superfícies</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaBolt />
             </div>
-            <h4>Dupla Ação</h4>
-            <p>Remove oxigênio e resfria simultaneamente</p>
+            <h4>Resfriamento Rápido</h4>
+            <p>Reduz rapidamente a temperatura e evita a continuidade do fogo</p>
           </div>
         </div>
 
         {/* BOX FINAL */}
         <div className="bottom">
-          <div className="info verde">
-            <h4>Eficiência Comprovada</h4>
+          <div className="info laranja">
+            <h4>Controle da Propagação</h4>
             <p>
-              Produto <strong>10x mais eficiente</strong> que a água tradicional, reduzindo tempo de resposta e danos ambientais.
+              Atua rapidamente para <strong>impedir que o fogo se espalhe</strong> em materiais combustíveis.
             </p>
           </div>
 
-          <div className="info azul">
-            <h4>Responsabilidade Ambiental</h4>
+          <div className="info verde">
+            <h4>Proteção de Estruturas</h4>
             <p>
-              Fórmula <strong>não corrosiva e biodegradável</strong>, totalmente segura para fauna, flora e mananciais.
+              Ideal para <strong>casas, comércios e escritórios</strong>, reduzindo danos estruturais.
             </p>
           </div>
         </div>

@@ -1050,3 +1050,268 @@ html:has(.incendioa) {
     font-size: 1.5rem;
   }
 }
+
+
+/* Classe B */
+
+.incendiob {
+  background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
+              url('./assets/incendiob.png') center/cover fixed no-repeat;
+  
+  color: #ffffff;
+  padding: 100px 20px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  margin: 0 !important;
+}
+
+body:has(.incendiob), 
+html:has(.incendiob) {
+  background-color: #0a0a0a !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.incendiob .incendiob-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.incendiob .card .card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+}
+
+.incendiob .tag {
+  background-color: rgba(255, 102, 0, 0.15);
+  color: rgb(255, 255, 255);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.incendiob .box p .text-branco {
+  color: white;
+  font-weight: 700;
+}
+
+.incendiob .box p .text-branco {
+  color: white;
+  font-weight: 700;
+}
+
+.incendiob h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+  color: #ffffff;
+}
+
+.incendiob .descricao {
+  font-size: 1.15rem;
+  color: #b0b0b0;
+  max-width: 750px;
+  margin-bottom: 50px;
+  line-height: 1.7;
+}
+
+.incendiob .box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 60px;
+}
+
+.incendiob .box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.incendiob .box p {
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  max-width: 950px;
+  line-height: 1.6;
+}
+
+.incendiob .box p strong {
+  color: white;
+  font-weight: 700;
+}
+
+.incendiob h3 {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.incendiob .cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.incendiob .card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  padding: 35px 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.incendiob .card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.952);
+}
+
+.incendiob .card.destaque {
+  border: 1px solid rgb(255, 255, 255);
+  background: rgba(13, 0, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 51, 255, 0.15);
+}
+
+.incendiob .card h4 {
+  font-size: 1.2rem;
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.incendiob .card p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.incendiob .bottom {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.incendiob .info {
+  flex: 1;
+  min-width: 300px;
+  padding: 30px;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.incendiob .info:hover {
+  transform: translateY(-3px);
+}
+
+.incendiob .info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.incendiob .info p {
+  font-size: 1rem;
+  color: #e2e8f0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.incendiob .info.branco {
+  background: rgba(38, 30, 110, 0.08);
+  border: 1px solid rgb(255, 255, 255);
+  border-left: 4px solid #ffffff;
+}
+
+.incendiob .info.branco {
+  background: rgba(90, 100, 32, 0.43);
+  border: 1px solid rgb(255, 255, 255);
+  border-left: 4px solid #ffffff;
+}
+
+.incendiob .info.branco h4 { 
+  color: rgb(255, 255, 255); 
+}
+
+.incendiob .info.branco h4 { 
+  color: rgb(255, 255, 255); 
+}
+
+.incendiob .info.branco strong { 
+  color: rgb(255, 255, 255); 
+}
+
+.incendiob .info.brancostrong { 
+  color: rgb(255, 255, 255); 
+}
+
+.incendiob .btn-voltar {
+  display: inline-block;
+  background: rgba(250, 250, 249, 0.2);
+  color: white;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.incendiob .btn-voltar:hover {
+  background: rgba(203, 204, 197, 0.3);
+  transform: translateX(-5px);
+}
+
+@media (max-width: 1024px) {
+  .incendiob .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .incendiob .cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .incendiob h1 {
+    font-size: 2.5rem;
+  }
+  
+  .incendiob .box {
+    padding: 25px;
+  }
+  
+  .incendiob .box h2 {
+    font-size: 1.5rem;
+  }
+}

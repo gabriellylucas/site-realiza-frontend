@@ -12,24 +12,23 @@ const Industrial = () => {
           ← Voltar para a Página Inicial
         </Link>
 
-
         <h1>Incêndios Industriais</h1>
 
         <p className="descricao">
-          Ambientes industriais apresentam alto risco de incêndio devido à presença
-          de materiais inflamáveis, processos de alta temperatura e equipamentos
-          elétricos complexos.
+          Incêndios industriais envolvem diferentes tipos de riscos, incluindo materiais sólidos,
+          líquidos inflamáveis e equipamentos energizados. São comuns em fábricas, refinarias,
+          armazéns e ambientes com processos térmicos e químicos.
         </p>
 
         {/* BOX PRINCIPAL */}
         <div className="box">
-          <h2>Nanotecnologia de Combate a Incêndios</h2>
+          <h2>Tecnologia no Combate a Incêndios Industriais</h2>
           <p>
-            Nossa solução revolucionária utiliza nanotecnologia avançada para
-            combater incêndios industriais de forma mais eficiente, segura e
-            sustentável. O produto atua através de dupla ação: 
-            <strong className="text-laranja"> removendo o oxigênio </strong> e 
-            <strong className="text-azul"> resfriando o ambiente</strong>, garantindo proteção máxima para sua operação industrial.
+            Em ambientes industriais, o combate ao fogo exige soluções rápidas e altamente eficientes,
+            capazes de atuar em diferentes classes de incêndio simultaneamente. Nossa tecnologia atua com 
+            <strong className="text-laranja"> supressão da combustão </strong> e 
+            <strong className="text-azul"> resfriamento intensivo</strong>, reduzindo a propagação das chamas,
+            protegendo estruturas, equipamentos e garantindo maior segurança operacional.
           </p>
         </div>
 
@@ -41,48 +40,48 @@ const Industrial = () => {
             <div className="card-icon">
               <FaFireExtinguisher />
             </div>
-            <h4>10x Mais Eficiente</h4>
-            <p>Tecnologia de nanotecnologia superior à água convencional</p>
+            <h4>Alta Eficiência</h4>
+            <p>Atuação eficaz em diferentes tipos de incêndio no ambiente industrial</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaShieldAlt />
             </div>
-            <h4>Segurança Máxima</h4>
-            <p>Proteção completa para pessoas e equipamentos industriais</p>
+            <h4>Proteção Operacional</h4>
+            <p>Reduz riscos para trabalhadores e evita danos a máquinas e instalações</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaLeaf />
             </div>
-            <h4>Sustentável</h4>
-            <p>Não corrosivo e seguro ao meio ambiente</p>
+            <h4>Baixo Impacto</h4>
+            <p>Fórmula segura que minimiza impactos ambientais e estruturais</p>
           </div>
 
           <div className="card">
             <div className="card-icon">
               <FaBolt />
             </div>
-            <h4>Dupla Ação</h4>
-            <p>Remove oxigênio e resfriando simultaneamente</p>
+            <h4>Ação Imediata</h4>
+            <p>Resposta rápida que controla o fogo e reduz o tempo de combate</p>
           </div>
         </div>
 
         {/* BOX FINAL */}
         <div className="bottom">
           <div className="info laranja">
-            <h4>Eficiência Comprovada</h4>
+            <h4>Redução de Prejuízos</h4>
             <p>
-              Produto <strong>10x mais eficiente</strong> que a água tradicional, reduzindo tempo de resposta e danos materiais.
+              Minimiza <strong>danos a equipamentos e estruturas</strong>, evitando grandes perdas financeiras.
             </p>
           </div>
 
           <div className="info verde">
-            <h4>Responsabilidade Ambiental</h4>
+            <h4>Continuidade Operacional</h4>
             <p>
-              Fórmula <strong>não corrosiva</strong> e totalmente segura ao meio ambiente, protegendo sua operação e o planeta.
+              Permite um controle mais rápido do incêndio, ajudando na <strong>retomada das operações</strong>.
             </p>
           </div>
         </div>
