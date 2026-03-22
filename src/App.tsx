@@ -5,9 +5,9 @@ import Banner from "./components/Banner";
 import Section from "./components/Section";
 import Servicos from "./components/Servicos";
 import Industrial from "./components/Industrial";
-
-import "./App.css";
 import Florestal from "./components/Florestal";
+import Urbanos from "./components/Urbanos";
+import "./App.css";
 
 function Home() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/industrial" element={<Industrial />} />
         <Route path="/florestal" element={<Florestal />} />
+        <Route path="/urbanos" element={<Urbanos/>} />
       </Routes>
     </BrowserRouter>
   );
