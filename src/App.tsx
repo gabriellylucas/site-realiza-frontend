@@ -7,6 +7,7 @@ import Servicos from "./components/Servicos";
 import Industrial from "./components/Industrial";
 
 import "./App.css";
+import Florestal from "./components/Florestal";
 
 function Home() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/industrial" element={<Industrial />} />
+        <Route path="/florestal" element={<Florestal />} />
       </Routes>
     </BrowserRouter>
   );

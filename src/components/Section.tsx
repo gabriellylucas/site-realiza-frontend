@@ -73,7 +73,7 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios Industriais</h3>
       <p>Proteção avançada para complexos fabris e logística.</p>
-    <Link to="/industrial" className="btn-saiba-mais">
+              <Link to="/industrial" className="btn-saiba-mais">
                 Saiba Mais
               </Link>
     </div>
@@ -85,7 +85,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios Florestais</h3>
       <p>Solução nanotecnológica para ambientes naturais.</p>
-      <button>Saiba Mais</button>
+       <Link to="/florestal" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 
@@ -95,7 +97,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios Urbanos</h3>
       <p>Eficiência em áreas densas e estruturas civis.</p>
-      <button>Saiba Mais</button>
+       <Link to="/urbanos" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 
@@ -105,7 +109,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios de Classe A</h3>
       <p>Papel, madeira, tecidos e materiais sólidos.</p>
-      <button>Saiba Mais</button>
+       <Link to="/classea" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 
@@ -115,7 +121,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios de Classe B</h3>
       <p>Líquidos inflamáveis e combustíveis.</p>
-      <button>Saiba Mais</button>
+       <Link to="/classeb" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 
@@ -125,7 +133,9 @@ const Section: React.FC = () => {
     <div className="card-overlay">
       <h3>Incêndios de Classe D</h3>
       <p>Metais combustíveis e ligas leves.</p>
-      <button>Saiba Mais</button>
+      <Link to="/classed" className="btn-saiba-mais">
+                Saiba Mais
+              </Link>
     </div>
   </div>
 </div>
