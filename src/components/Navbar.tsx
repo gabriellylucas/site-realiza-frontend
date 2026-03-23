@@ -9,7 +9,7 @@ function Navbar() {
 
       <ul>
         <li>Início</li>
-        <li>Serviços</li>
+        <li>Produto</li>
         <li>Empresa</li>
         <li className="nav-contato">Contato</li>
       </ul>

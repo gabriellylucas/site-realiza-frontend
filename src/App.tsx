@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import Section from "./components/Section";
-import Servicos from "./components/Servicos";
+import ProdutoAcao from "./components/ProdutoAcao";
 import Industrial from "./components/Industrial";
 import Florestal from "./components/Florestal";
 import Urbanos from "./components/Urbanos";
@@ -18,7 +18,7 @@ function Home() {
       <Navbar />
       <Banner />
       <Section />
-      <Servicos />
+      <ProdutoAcao />
     </>
   );
 }

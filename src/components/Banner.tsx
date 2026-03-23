@@ -4,12 +4,11 @@ function Banner() {
   return (
     <section className="banner">
       <div className="banner-container">
-        
         <div className="banner-text">
-          <h1 className="titulo-banner">
-  <span className="linha1">A Revolução Nanotecnológica no</span>
-  <span className="linha2"> Combate a Incêndios</span>
-</h1>
+           <h1 className="titulo-banner">
+        <span className="linha1">A Revolução Nanotecnológica no</span>
+        <span className="linha2"> Combate a Incêndios</span>
+           </h1>
 
           <p className="subtitle">
             Tecnologia limpa, sustentável e até <br />
