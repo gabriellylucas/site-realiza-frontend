@@ -1,5 +1,6 @@
 import React from 'react';
 import '../ProdutoAcao.css';
+import img from "../assets/florestaesg.png";
 import { FaTint, FaSyncAlt, FaClock, FaTruck, FaExclamationTriangle, FaFireAlt, FaBuilding, FaSkull } from "react-icons/fa";
 
 const ProdutoAcao: React.FC = () => {
@@ -157,6 +158,146 @@ const ProdutoAcao: React.FC = () => {
     <div className="solucao">
       <h3>Realiza Antichamas: A Solução Segura</h3>
       <p>Não corrosivo, não tóxico, biodegradável e 10x mais eficiente</p>
+    </div>
+
+  </div>
+</section>
+
+{/* SEÇÃO ESG */}
+
+<section className="esg">
+  <div className="esg-container">
+
+    <div className="esg-header">
+      <h2>
+        LIDERANÇA EM ESG: SEGURANÇA
+      </h2>
+
+      <h3>ALINHADA À SUSTENTABILIDADE</h3>
+
+      <p>
+        A primeira tecnologia de combate a incêndios <strong>Carbono Positivo</strong> REALIZA ANTICHAMAS
+      </p>
+    </div>
+
+    <div className="esg-content">
+
+      {/* IMAGEM */}
+      <div className="esg-img">
+  <img src={img} alt="Floresta" />
+</div>
+
+      {/* CARDS */}
+      <div className="esg-cards">
+        <div className="esg-card">
+          <div className="icon">🌿</div>
+          <div>
+            <h4>100%</h4>
+            <span>ATÓXICO</span>
+            <p>Seguro para o solo, plantas e animais</p>
+          </div>
+        </div>
+
+        <div className="esg-card">
+          <div className="icon">🌲</div>
+          <div>
+            <h4>43.200</h4>
+            <span>TONELADAS</span>
+            <p>de CO2 evitadas. A cada 400 hectares preservados</p>
+          </div>
+        </div>
+
+        <div className="esg-card">
+          <div className="icon">⏱️</div>
+          <div>
+            <h4>72h</h4>
+            <span>BIODEGRADÁVEL</span>
+            <p>Degradação completa em até 72 horas</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="secao-acao-produto">
+  <div className="container-interno">
+
+    {/* NOVA SEÇÃO CREDIBILIDADE */}
+    <div className="credibilidade">
+
+      <h2 className="titulo">
+        Realiza Antichamas:
+      </h2>
+
+      <p className="subtitulo">
+        Testes e Validações de Credibilidade
+      </p>
+
+      <p className="descricao">
+        Eficácia comprovada por um amplo espectro de instituições brasileiras:
+        órgãos militares, governamentais, centros de pesquisa e empresas privadas.
+      </p>
+
+      {/* 4 CARDS */}
+      <div className="grid-top">
+
+        <div className="card-top">
+          <div className="icon">🏢</div>
+          <p>Órgãos Governamentais</p>
+        </div>
+
+        <div className="card-top">
+          <div className="icon">🎓</div>
+          <p>Rigor Científico e Universitário</p>
+        </div>
+
+        <div className="card-top">
+          <div className="icon">🛡️</div>
+          <p>Testes Militares</p>
+        </div>
+
+        <div className="card-top">
+          <div className="icon">🏭</div>
+          <p>Instituições Privadas</p>
+        </div>
+
+      </div>
+
+      {/* CARD LARANJA */}
+      <div className="veredito">
+
+        <h3>O Veredito: Segurança Total</h3>
+
+        <div className="veredito-grid">
+
+          <div>
+            <span>✓</span>
+            <h4>VALIDADO</h4>
+            <p>pela Segurança Pública</p>
+          </div>
+
+          <div>
+            <span>✓</span>
+            <h4>CERTIFICADO</h4>
+            <p>pela Ciência</p>
+          </div>
+
+          <div>
+            <span>✓</span>
+            <h4>APROVADO</h4>
+            <p>pelo Mercado</p>
+          </div>
+
+        </div>
+
+        <p className="final">
+          Garanta a proteção atestada pelas maiores autoridades do Brasil.
+        </p>
+
+      </div>
+
     </div>
 
   </div>
