@@ -239,12 +239,13 @@
 
 .riscos {
   background: #ffffff;
-  padding: 50px 5%;
+  padding: 0px 5%;
+  zoom: 120%;
 }
 
 .riscos .titulo {
   text-align: center;
-  font-size: 28px;
+  font-size: 35px;
   color: #1e2a38;
   margin-bottom: 10px;
 }
@@ -252,7 +253,7 @@
 .riscos .subtitulo {
   text-align: center;
   color: #ff4d00;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
 .riscos .grid-riscos {
@@ -261,14 +262,12 @@
   gap: 20px;
 }
 
-/* Aqui é onde o conflito acontecia. 
-   Adicionando .riscos na frente, ele ignora os cards da galeria */
 .riscos .card {
   display: flex;
-  gap: 15px;
+  gap: 30px;
   padding: 18px;
   border-radius: 12px;
-  height: auto; /* Garante que não herde os 300px da galeria */
+  height: auto; 
   cursor: default;
 }
 
