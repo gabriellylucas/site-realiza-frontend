@@ -10,7 +10,10 @@ import Urbanos from "./components/Urbanos";
 import IncendioA from "./components/IncendioA";
 import IncendioB from "./components/IncendioB";
 import IncendioD from "./components/IncendioD";
+import Login from "./pages/Login";
 import "./App.css";
+import Cadastro from "./pages/Cadastro";
+
 
 function Home() {
   return (
@@ -19,6 +22,7 @@ function Home() {
       <Banner />
       <Section />
       <ProdutoAcao />
+      
     </>
   );
 }
@@ -34,6 +38,8 @@ function App() {
         <Route path="/incendioa" element={<IncendioA />} />
         <Route path="/incendiob" element={<IncendioB />} />
         <Route path="/incendiod" element={<IncendioD />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   );

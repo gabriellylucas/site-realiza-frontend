@@ -1,6 +1,6 @@
 import React from 'react';
 import '../ProdutoAcao.css';
-import { FaTint, FaSyncAlt, FaClock, FaTruck } from "react-icons/fa";
+import { FaTint, FaSyncAlt, FaClock, FaTruck, FaExclamationTriangle, FaFireAlt, FaBuilding, FaSkull } from "react-icons/fa";
 
 const ProdutoAcao: React.FC = () => {
   return (
@@ -101,6 +101,66 @@ const ProdutoAcao: React.FC = () => {
             </div>
 
           </div>
+
+          {/* SEÇÃO RISCOS */}
+<section className="riscos">
+  <div className="container">
+
+    <h2 className="titulo">
+      Riscos Ocultos dos Produtos
+    </h2>
+
+    <h3 className="subtitulo">
+      Convencionais no Combate a Incêndios
+    </h3>
+
+    <div className="grid-riscos">
+
+      <div className="card risco-vermelho">
+        <div className="icone"><FaExclamationTriangle /></div>
+        <div>
+          <span className="tag">LGE</span>
+          <h4>Impacto Ambiental e à Saúde</h4>
+          <p>Risco químico severo para seres humanos e contaminação de fauna, flora e mananciais.</p>
+        </div>
+      </div>
+
+      <div className="card risco-vermelho">
+        <div className="icone"><FaFireAlt /></div>
+        <div>
+          <span className="tag">LGE</span>
+          <h4>Ineficiência Operacional</h4>
+          <p>Não cria barreira durável contra reignição e exige alto consumo de água.</p>
+        </div>
+      </div>
+
+      <div className="card risco-laranja">
+        <div className="icone"><FaBuilding /></div>
+        <div>
+          <span className="tag laranja">Retardantes LTR</span>
+          <h4>Danos Estruturais e Materiais</h4>
+          <p>Causa perda de resistência em estruturas tratadas e é altamente corrosivo para equipamentos.</p>
+        </div>
+      </div>
+
+      <div className="card risco-laranja">
+        <div className="icone"><FaSkull /></div>
+        <div>
+          <span className="tag laranja">Retardantes LTR</span>
+          <h4>Toxicidade Humana</h4>
+          <p>Produto classificado como tóxico à saúde humana durante o manuseio ou exposição.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div className="solucao">
+      <h3>Realiza Antichamas: A Solução Segura</h3>
+      <p>Não corrosivo, não tóxico, biodegradável e 10x mais eficiente</p>
+    </div>
+
+  </div>
+</section>
 
         </div>
       </section>

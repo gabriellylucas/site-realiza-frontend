@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -26,10 +27,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 30px;
   background-color: rgb(0, 0, 0);
   color: white;
-  padding: 25px 5%;
+  padding: 15px 5%;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -38,7 +39,7 @@ body {
 .navbar ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
@@ -59,12 +60,11 @@ body {
 /* BANNER */
 .banner {
   width: 100%;
-  min-height: 90vh;
+  min-height: 80px;
   background: linear-gradient(135deg, #000000, #0a1a2f);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 8%;
   overflow: hidden;
   position: relative;
 }
@@ -75,7 +75,7 @@ body {
   justify-content: space-between;
   gap: 80px;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -84,30 +84,29 @@ body {
   max-width: 700px;
 }
 
-
 .banner-text h1 {
-  font-size: 64px;
+  font-size: clamp(32px, 5vw, 56px);
   line-height: 1.2;
   margin-bottom: 28px;
   font-weight: 800;
   color: white;
 }
 
-
 .subtitle {
-  font-size: 24px;
+  font-size: clamp(16px, 2vw, 22px);
   margin-bottom: 24px;
   font-weight: 500;
   line-height: 1.3;
+  margin-left: 0 !important; 
+  text-align: left !important; 
   color: rgba(255, 255, 255, 0.9);
 }
 
 .subtitle strong {
   color: #ff6a00;
   font-weight: bold;
-  font-size: 28px;
+  font-size: clamp(18px, 2.5vw, 26px);
 }
-
 
 .solutions-list {
   list-style: none;
@@ -116,7 +115,7 @@ body {
 }
 
 .solutions-list li {
-  font-size: 18px;
+  font-size: clamp(14px, 1.5vw, 18px);
   line-height: 1.5;
   margin-bottom: 12px;
   padding-left: 20px;
@@ -133,10 +132,9 @@ body {
   font-weight: bold;
 }
 
-
 .buttons {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -178,7 +176,7 @@ body {
 
 .banner-image {
   flex: 1;
-  max-width: 550px;
+  max-width: 475px;
   position: relative;
 }
 
@@ -253,6 +251,7 @@ body {
   gap: 40px;
   flex-wrap: wrap;
 }
+
 
 .left {
   flex: 1;
@@ -645,3 +644,4 @@ body:has(.industrial) {
 body:has(.industrial) .navbar {
   display: none;
 }
+
