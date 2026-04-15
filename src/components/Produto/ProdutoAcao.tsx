@@ -6,7 +6,7 @@ import { FaTint, FaSyncAlt, FaClock, FaTruck, FaExclamationTriangle, FaFireAlt, 
 const ProdutoAcao: React.FC = () => {
   return (
     <>
-      {/* SEÇÃO AÇÃO DO PRODUTO */}
+
       <section id="secao-acao-produto">
         <div className="container-interno">
           
@@ -42,7 +42,6 @@ const ProdutoAcao: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO PREPARAÇÃO*/}
       <section id="secao-preparacao">
         <div className="conteudo-centralizado">
           
@@ -103,7 +102,6 @@ const ProdutoAcao: React.FC = () => {
 
           </div>
 
-          {/* SEÇÃO RISCOS */}
          <section className="riscos">
         <div className="container">
 
@@ -163,7 +161,6 @@ const ProdutoAcao: React.FC = () => {
   </div>
 </section>
 
-{/* SEÇÃO ESG */}
 
 <section className="esg">
   <div className="esg-container">

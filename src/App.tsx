@@ -62,29 +62,35 @@ function BotaoFlutuanteOrcamento() {
 function AppWrapper() {
   const location = useLocation();
 
-  // ADICIONE ESTE useEffect PARA O SCROLL AUTOMÁTICO
+
   useEffect(() => {
-    // Verifica se tem # na URL
+
     if (location.hash) {
       const id = location.hash.replace('#', '');
       const element = document.getElementById(id);
       
       if (element) {
-        // Pequeno delay para garantir que a página carregou
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
     }
-  }, [location]); // Executa toda vez que a URL mudar
+  }, [location]); 
 
   const rotasSemNavbarFooter = location.pathname === "/login" || location.pathname === "/cadastro";
   
   const mostrarBotao = location.pathname !== "/login" && 
                        location.pathname !== "/cadastro" && 
                        location.pathname !== "/orcamento" &&
-                       location.pathname !== "/meus-orcamentos";
-
+                       location.pathname !== "/meus-orcamentos" &&
+                       location.pathname !== "/contato" &&
+                       location.pathname !== "/sobre" &&
+                       location.pathname !== "/florestal" &&
+                       location.pathname !== "/industrial" &&
+                       location.pathname !== "/urbanos" &&
+                       location.pathname !== "/incendioa" &&
+                       location.pathname !== "/incendiob" &&
+                       location.pathname !== "/incendiod";
   return (
     <>
 
