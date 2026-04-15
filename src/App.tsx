@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom"; 
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react"; // ← ADICIONE ESTA LINHA
 import Navbar from "./layouts/Navbar";
 import HeroSection from "./components/Hero/HeroSection";
 import Section from "./components/Produto/ProdutoSection";
@@ -60,6 +61,22 @@ function BotaoFlutuanteOrcamento() {
 
 function AppWrapper() {
   const location = useLocation();
+
+  // ADICIONE ESTE useEffect PARA O SCROLL AUTOMÁTICO
+  useEffect(() => {
+    // Verifica se tem # na URL
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      
+      if (element) {
+        // Pequeno delay para garantir que a página carregou
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]); // Executa toda vez que a URL mudar
 
   const rotasSemNavbarFooter = location.pathname === "/login" || location.pathname === "/cadastro";
   

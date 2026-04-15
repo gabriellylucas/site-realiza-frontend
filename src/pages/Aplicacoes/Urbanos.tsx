@@ -8,7 +8,7 @@ const Urbanos = () => {
       
       <div className="urbano-container">
         
-        <Link to="/" className="btn-voltar">
+        <Link to="/#produto" className="btn-voltar">
           ← Voltar para a Página Inicial
         </Link>
 
