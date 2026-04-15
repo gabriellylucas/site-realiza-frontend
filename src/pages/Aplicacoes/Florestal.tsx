@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../Section.css";
+import "../../styles/Section.css";
 import { FaFireExtinguisher, FaShieldAlt, FaLeaf, FaBolt } from "react-icons/fa";
 
 const Florestal = () => {
@@ -19,7 +19,6 @@ const Florestal = () => {
           condições climáticas adversas e difícil acesso para combate.
         </p>
 
-        {/* BOX PRINCIPAL */}
         <div className="box">
           <h2>Nanotecnologia de Combate a Incêndios Florestais</h2>
           <p>
@@ -33,7 +32,6 @@ const Florestal = () => {
           </p>
         </div>
 
-        {/* BENEFÍCIOS */}
         <h3>Benefícios da Tecnologia</h3>
 
         <div className="cards">
@@ -70,7 +68,6 @@ const Florestal = () => {
           </div>
         </div>
 
-        {/* BOX FINAL */}
         <div className="bottom">
           <div className="info verde">
             <h4>Eficiência Comprovada</h4>

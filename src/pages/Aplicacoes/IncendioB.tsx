@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../Section.css";
+import "../../styles/Section.css";
 import { FaFireExtinguisher, FaShieldAlt, FaLeaf, FaBolt } from "react-icons/fa";
 
 const IncendioB = () => {
@@ -20,7 +20,6 @@ const IncendioB = () => {
           oficinas e locais com armazenamento de produtos químicos.
         </p>
 
-        {/* BOX PRINCIPAL */}
         <div className="box">
           <h2>Tecnologia no Combate a Incêndios de Classe B</h2>
           <p>
@@ -34,7 +33,6 @@ const IncendioB = () => {
           </p>
         </div>
 
-        {/* BENEFÍCIOS */}
         <h3>Benefícios da Tecnologia</h3>
 
         <div className="cards">
@@ -71,7 +69,6 @@ const IncendioB = () => {
           </div>
         </div>
 
-        {/* BOX FINAL */}
         <div className="bottom">
           <div className="info laranja">
             <h4>Prevenção de Reignição</h4>

@@ -4,7 +4,7 @@
 .industrial {
   
   background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
-              url('./assets/industria.png') center/cover fixed no-repeat;
+              url('../assets/industria.png') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;
@@ -277,7 +277,7 @@ html:has(.industrial) {
 
 .florestal {
   background: linear-gradient(rgba(18, 30, 20, 0.75), rgba(10, 25, 15, 0.85)), 
-              url('./assets/floresta.png') center/cover fixed no-repeat;
+              url('../assets/floresta.png') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;
@@ -524,7 +524,7 @@ html:has(.florestal) {
 
 .urbano {
   background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
-              url('./assets/urbanoss.png') center/cover fixed no-repeat;
+              url('../assets/urbanoss.png') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;
@@ -789,7 +789,7 @@ html:has(.urbano) {
 
 .incendioa {
   background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
-              url('./assets/incendioa.jpeg') center/cover fixed no-repeat;
+              url('../assets/incendioa.jpeg') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;
@@ -1054,7 +1054,7 @@ html:has(.incendioa) {
 
 .incendiob {
   background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
-              url('./assets/incendiob.png') center/cover fixed no-repeat;
+              url('../assets/incendiob.png') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;
@@ -1318,7 +1318,7 @@ html:has(.incendiob) {
 
 .incendiod {
   background: linear-gradient(rgba(18, 20, 23, 0.85), rgba(18, 20, 23, 0.95)), 
-              url('./assets/incendiod.jpg') center/cover fixed no-repeat;
+              url('../assets/incendiod.jpg') center/cover fixed no-repeat;
   
   color: #ffffff;
   padding: 100px 20px;

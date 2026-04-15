@@ -10,6 +10,7 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -42,6 +43,7 @@ body {
   gap: 25px;
   margin: 0;
   padding: 0;
+  align-items: center; 
 }
 
 .navbar ul li {
@@ -49,12 +51,73 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease; 
-  color: white; 
+  color: white;
+  display: flex;
+  align-items: center; 
+  height: 100%;
+}
+
+.navbar ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  line-height: normal; 
 }
 
 .navbar ul li:hover {
-  color: white;
   transform: scale(1.05); 
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
+.navbar ul li.login-btn-item {
+  display: flex;
+  align-items: center;
+}
+
+.btn-login-nav {
+  background: linear-gradient(90deg, #ff6a00, #ff3c00);
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.3);
+  line-height: normal;
+}
+
+.btn-login-nav:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.5);
+  background: linear-gradient(90deg, #ff7a1a, #ff4d1a);
+}
+
+
+.navbar ul li.logout-icon-item {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li.logout-icon-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar ul li.logout-icon-item svg {
+  display: block;
 }
 
 /* BANNER */
@@ -190,6 +253,27 @@ body {
 
 .banner-image img:hover {
   transform: scale(1.02);
+}
+
+.btn-orcamento {
+  background: #ff6a00;
+  color: white;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  text-decoration: none; 
+  display: inline-block; 
+}
+
+.btn-orcamento:hover {
+  background: #e05f00;
+  color: white; 
+  transform: translateY(-2px);
 }
 
 /* SERVIÇOS */
@@ -643,5 +727,57 @@ body:has(.industrial) {
 
 body:has(.industrial) .navbar {
   display: none;
+}
+
+.btn-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background: #ff6a00;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50px;
+
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.btn-flutuante:hover {
+  background: #e05f00;
+  color: white; 
+  text-decoration: none; 
+  transform: scale(1.05);
+}
+
+.btn-flutuante::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: rgba(255, 106, 0, 0.5);
+  animation: pulse 1.5s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
 }
 

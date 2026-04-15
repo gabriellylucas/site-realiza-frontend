@@ -1,28 +1,97 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
-import Section from "./components/Section";
-import ProdutoAcao from "./components/ProdutoAcao";
-import Industrial from "./components/Industrial";
-import Florestal from "./components/Florestal";
-import Urbanos from "./components/Urbanos";
-import IncendioA from "./components/IncendioA";
-import IncendioB from "./components/IncendioB";
-import IncendioD from "./components/IncendioD";
-import Login from "./pages/Login";
-import "./App.css";
-import Cadastro from "./pages/Cadastro";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom"; 
+import Navbar from "./layouts/Navbar";
+import HeroSection from "./components/Hero/HeroSection";
+import Section from "./components/Produto/ProdutoSection";
+import ProdutoAcao from "./components/Produto/ProdutoAcao";
+import Industrial from "./pages/Aplicacoes/Industrial";
+import Florestal from "./pages/Aplicacoes/Florestal";
+import Urbanos from "./pages/Aplicacoes/Urbanos";
+import IncendioA from "./pages/Aplicacoes/IncendioA";
+import IncendioB from "./pages/Aplicacoes/IncendioB";
+import IncendioD from "./pages/Aplicacoes/IncendioD";
+import Footer from "./layouts/Footer";
+import Login from "./pages/Auth/Login";
+import Cadastro from "./pages/Auth/Cadastro";
+import Orcamento from "./pages/Orcamento/Orcamento";
+import MeusOrcamentos from "./pages/Orcamento/MeusOrcamentos";
+import Contato from "./pages/Institucional/Contato"; 
+import Sobre from "./pages/Institucional/Sobre";
+import "./styles/App.css";
 
 
 function Home() {
   return (
     <>
-      <Navbar />
-      <Banner />
+      <HeroSection />
       <Section />
       <ProdutoAcao />
+    </>
+  );
+}
+
+function BotaoFlutuanteOrcamento() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      navigate("/orcamento");
+    } else {
+      const confirmou = window.confirm(
+        "🔐 Área Restrita\n\n" +
+        "Para solicitar um orçamento, você precisa estar logado.\n\n" +
+        "Você será redirecionado para criar sua conta ou fazer login.\n\n" +
+        "Clique em OK para continuar."
+      );
       
+      if (confirmou) {
+        navigate("/cadastro");
+      }
+    }
+  };
+
+  return (
+    <button onClick={handleClick} className="btn-flutuante">
+      💰 Orçamento
+    </button>
+  );
+}
+
+function AppWrapper() {
+  const location = useLocation();
+
+  const rotasSemNavbarFooter = location.pathname === "/login" || location.pathname === "/cadastro";
+  
+  const mostrarBotao = location.pathname !== "/login" && 
+                       location.pathname !== "/cadastro" && 
+                       location.pathname !== "/orcamento" &&
+                       location.pathname !== "/meus-orcamentos";
+
+  return (
+    <>
+
+      {!rotasSemNavbarFooter && <Navbar />}
+      
+      {mostrarBotao && <BotaoFlutuanteOrcamento />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/industrial" element={<Industrial />} />
+        <Route path="/florestal" element={<Florestal />} />
+        <Route path="/urbanos" element={<Urbanos />} />
+        <Route path="/incendioa" element={<IncendioA />} />
+        <Route path="/incendiob" element={<IncendioB />} />
+        <Route path="/incendiod" element={<IncendioD />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/orcamento" element={<Orcamento />} />
+        <Route path="/meus-orcamentos" element={<MeusOrcamentos />} />
+        <Route path="/contato" element={<Contato />} /> 
+        <Route path="/sobre" element={<Sobre />} />
+      </Routes>
+
+      {!rotasSemNavbarFooter && <Footer />}
     </>
   );
 }
@@ -30,17 +99,7 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/industrial" element={<Industrial />} />
-        <Route path="/florestal" element={<Florestal />} />
-        <Route path="/urbanos" element={<Urbanos/>} />
-        <Route path="/incendioa" element={<IncendioA />} />
-        <Route path="/incendiob" element={<IncendioB />} />
-        <Route path="/incendiod" element={<IncendioD />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-      </Routes>
+      <AppWrapper />
     </BrowserRouter>
   );
 }

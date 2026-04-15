@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../Cadastro.css";
+import "../../styles/Cadastro.css";
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -9,45 +9,37 @@ export default function Cadastro() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  // validação de email
   function validarEmail(email: string) {
     return /\S+@\S+\.\S+/.test(email);
   }
 
-  // validação simples de CPF
   function validarCPF(cpf: string) {
     return cpf.length === 11 && /^\d+$/.test(cpf);
   }
 
-  // função de cadastro
   const handleCadastro = async () => {
     setErro("");
 
-    // campos obrigatórios
     if (!nome || !email || !cpf || !senha || !confirmarSenha) {
       setErro("Preencha todos os campos");
       return;
     }
 
-    // email válido
     if (!validarEmail(email)) {
       setErro("Digite um email válido");
       return;
     }
 
-    // CPF válido
     if (!validarCPF(cpf)) {
       setErro("CPF inválido (apenas números, 11 dígitos)");
       return;
     }
 
-    // senha mínima
     if (senha.length < 6) {
       setErro("A senha deve ter no mínimo 6 caracteres");
       return;
     }
 
-    // confirmação de senha
     if (senha !== confirmarSenha) {
       setErro("As senhas não coincidem");
       return;
@@ -74,7 +66,6 @@ export default function Cadastro() {
         return;
       }
 
-      // sucesso
       alert("Cadastro realizado com sucesso!");
       window.location.href = "/login";
 

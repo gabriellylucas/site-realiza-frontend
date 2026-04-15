@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../Section.css";
+import "../../styles/Section.css";
 import { FaFireExtinguisher, FaShieldAlt, FaLeaf, FaBolt } from "react-icons/fa";
 
 const Urbanos = () => {
@@ -19,7 +19,6 @@ const Urbanos = () => {
           edificações próximas, redes elétricas e grande circulação de pessoas.
         </p>
 
-        {/* BOX PRINCIPAL */}
         <div className="box">
           <h2>Nanotecnologia no Combate a Incêndios Urbanos</h2>
           <p>
@@ -33,7 +32,6 @@ const Urbanos = () => {
           </p>
         </div>
 
-        {/* BENEFÍCIOS */}
         <h3>Benefícios da Tecnologia</h3>
 
         <div className="cards">
@@ -70,7 +68,6 @@ const Urbanos = () => {
           </div>
         </div>
 
-        {/* BOX FINAL */}
         <div className="bottom">
           <div className="info laranja">
             <h4>Redução de Danos</h4>

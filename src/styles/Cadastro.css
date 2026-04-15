@@ -45,7 +45,6 @@
   color: #6b7280;
 }
 
-/* foco laranja 🔥 */
 .cadastro-box input:focus {
   outline: none;
   border: 1px solid #ff6a00;

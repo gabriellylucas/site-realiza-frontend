@@ -1,6 +1,6 @@
 import React from 'react';
-import '../ProdutoAcao.css';
-import img from "../assets/florestaesg.png";
+import '../../styles/ProdutoAcao.css';
+import img from "../../assets/florestaesg.png";
 import { FaTint, FaSyncAlt, FaClock, FaTruck, FaExclamationTriangle, FaFireAlt, FaBuilding, FaSkull } from "react-icons/fa";
 
 const ProdutoAcao: React.FC = () => {
@@ -42,7 +42,7 @@ const ProdutoAcao: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO PREPARAÇÃO SIMPLES E IMEDIATA */}
+      {/* SEÇÃO PREPARAÇÃO*/}
       <section id="secao-preparacao">
         <div className="conteudo-centralizado">
           
@@ -104,8 +104,8 @@ const ProdutoAcao: React.FC = () => {
           </div>
 
           {/* SEÇÃO RISCOS */}
-<section className="riscos">
-  <div className="container">
+         <section className="riscos">
+        <div className="container">
 
     <h2 className="titulo">
       Riscos Ocultos dos Produtos
@@ -182,12 +182,10 @@ const ProdutoAcao: React.FC = () => {
 
     <div className="esg-content">
 
-      {/* IMAGEM */}
       <div className="esg-img">
-  <img src={img} alt="Floresta" />
-</div>
+        <img src={img} alt="Floresta" />
+      </div>
 
-      {/* CARDS */}
       <div className="esg-cards">
         <div className="esg-card">
           <div className="icon">🌿</div>
@@ -221,10 +219,9 @@ const ProdutoAcao: React.FC = () => {
   </div>
 </section>
 
-<section id="secao-acao-produto">
+<section id="secao-credibilidade">
   <div className="container-interno">
 
-    {/* NOVA SEÇÃO CREDIBILIDADE */}
     <div className="credibilidade">
 
       <h2 className="titulo">
@@ -240,7 +237,6 @@ const ProdutoAcao: React.FC = () => {
         órgãos militares, governamentais, centros de pesquisa e empresas privadas.
       </p>
 
-      {/* 4 CARDS */}
       <div className="grid-top">
 
         <div className="card-top">
@@ -265,7 +261,6 @@ const ProdutoAcao: React.FC = () => {
 
       </div>
 
-      {/* CARD LARANJA */}
       <div className="veredito">
 
         <h3>O Veredito: Segurança Total</h3>
