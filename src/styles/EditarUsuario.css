@@ -1,5 +1,5 @@
 .editar-usuario-container {
-  height: 100vh;
+  min-height: 100vh;
   background: radial-gradient(circle at top, #0f172a, #020617);
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   padding: 50px 40px;
   width: 100%;
   max-width: 420px;
-  margin-top: 90px;
+  margin-top: 60px;
   box-shadow: 0 0 0 1px rgba(255,255,255,0.05),
               0 25px 60px rgba(0,0,0,0.7);
 }
@@ -87,4 +87,17 @@
   text-align: center;
   font-weight: 500;
   font-size: 14px;
+}
+
+.editar-usuario-box .btn-excluir {
+  width: 70%;
+  margin: 10px auto 0;
+  display: block;
+  padding: 12px; /* menor */
+  font-size: 14px; /* menor texto */
+}
+
+.editar-usuario-box .btn-excluir:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 94, 0, 0.4); /* igual ao padrão */
 }

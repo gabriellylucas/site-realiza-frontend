@@ -84,8 +84,6 @@ export default function EditarUsuario() {
       return;
     }
 
-    
-
     try {
       const token = localStorage.getItem("token");
 
@@ -93,7 +91,6 @@ export default function EditarUsuario() {
         setErro("Usuário não autenticado");
         return;
       }
-
 
       const response = await fetch(`http://localhost:3000/users/update/${user?.id}`, {
         method: "PUT",
@@ -120,6 +117,49 @@ export default function EditarUsuario() {
       setErro("Erro ao conectar com o servidor");
     }
   };
+
+  const handleExcluirConta = async () => {
+  setErro("");
+  setSucesso("");
+
+  const confirmar = window.confirm(
+  "Se sua conta tiver orçamento cadastrado, ela não poderá ser excluída. Deseja continuar?"
+);
+
+  if (!confirmar) return;
+
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setErro("Usuário não autenticado");
+      return;
+    }
+
+    const response = await fetch(`http://localhost:3000/users/delete/${user?.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setErro(data.message || "Erro ao excluir conta");
+      return;
+    }
+
+    setSucesso("Conta excluída com sucesso!");
+    localStorage.removeItem("token");
+
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 1500);
+  } catch (error) {
+    setErro("Erro ao conectar com o servidor");
+  }
+};
 
   return (
     <div className="editar-usuario-container">
@@ -165,6 +205,10 @@ export default function EditarUsuario() {
         {sucesso && <p className="sucesso">{sucesso}</p>}
 
         <button onClick={handleSalvar}>Salvar alterações</button>
+
+        <button className="btn-excluir" onClick={handleExcluirConta}>
+          Excluir conta
+        </button>
       </div>
     </div>
   );
