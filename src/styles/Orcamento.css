@@ -344,3 +344,31 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+.btn-voltar {
+  display: inline-block;
+  background: rgba(255, 102, 0, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 102, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-voltar:hover {
+  background: rgba(255, 102, 0, 0.3);
+  border: 1px solid #ff6600;
+  transform: translateX(-5px);
+}
+
+.btn-voltar:active,
+.btn-voltar:focus,
+.btn-voltar:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid #ff6600 !important; 
+}

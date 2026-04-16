@@ -162,7 +162,6 @@ body {
     color: #000000;
 }
 
-
 .btn-enviar-contato {
     background-color: #0E9FA2; 
     color: #ffffff; 
@@ -183,4 +182,55 @@ body {
 
 .btn-enviar-contato:hover {
     filter: brightness(0.9);
+}
+
+.mensagem-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #c3e6cb;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #F3F4F6 inset !important;
+  box-shadow: 0 0 0 30px #F3F4F6 inset !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #F3F4F6 inset !important;
+  box-shadow: 0 0 0 30px #F3F4F6 inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+}
+
+.btn-enviar-contato:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-enviar-contato:focus-visible {
+  outline: none;
+  box-shadow: none;
 }

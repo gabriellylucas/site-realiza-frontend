@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import "../../styles/Orcamento.css";
 import fundo from "../../assets/classed.png";
+import { useNavigate } from "react-router-dom";
 
 type TipoEquipamento = "ABT" | "ACF" | "ABTS" | "AT" | "KIT";
 
@@ -137,6 +138,8 @@ function calcularTotal(equipamentos: Equipamento[]): { totalKg: number; valor: n
 }
 
 export default function Orcamento() {
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");       
@@ -294,6 +297,10 @@ export default function Orcamento() {
         <div className="overlay" />
         <div className="orcamento-container sucesso">
           <div className="sucesso-content">
+            <button className="btn-voltar" onClick={() => navigate("/")}>
+              ← Voltar para início
+            </button>
+
             <span className="sucesso-emoji">✅</span>
             <h1>Orçamento Enviado com Sucesso!</h1>
             <p>Em breve nossa equipe entrará em contato.</p>
@@ -310,6 +317,10 @@ export default function Orcamento() {
     <div className="pagina" style={{ backgroundImage: `url(${fundo})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundAttachment: "fixed" }}>
       <div className="overlay" />
       <div className="orcamento-container">
+        <button className="btn-voltar" onClick={() => navigate("/")}>
+          ← Voltar para início
+        </button>
+
         <h1>Solicitar Orçamento</h1>
         <p className="subtitle">
           Tecnologia limpa, sustentável e até <span>10x mais eficiente</span>

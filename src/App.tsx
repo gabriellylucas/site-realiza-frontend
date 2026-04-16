@@ -77,7 +77,11 @@ function AppWrapper() {
     }
   }, [location]); 
 
-  const rotasSemNavbarFooter = location.pathname === "/login" || location.pathname === "/cadastro";
+  const rotasSemNavbarFooter =
+  location.pathname === "/login" ||
+  location.pathname === "/cadastro" ||
+  location.pathname === "/orcamento" ||
+  location.pathname === "/meus-orcamentos";
   
   const mostrarBotao = location.pathname !== "/login" && 
                        location.pathname !== "/cadastro" && 

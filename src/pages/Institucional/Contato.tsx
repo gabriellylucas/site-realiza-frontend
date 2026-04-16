@@ -1,10 +1,53 @@
 import "../../styles/Contato.css";
 import { Send } from "lucide-react";
-// REMOVA esta linha: import Navbar from "../../layouts/Navbar";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
+
+interface FormData {
+  nome: string;
+  email: string;
+  mensagem: string;
+}
 
 export default function Contato() {
+  const [formData, setFormData] = useState<FormData>({
+    nome: "",
+    email: "",
+    mensagem: ""
+  });
+  
+  const [mostrarMensagem, setMostrarMensagem] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!formData.nome || !formData.email || !formData.mensagem) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    
+    setMostrarMensagem(true);
+    
+    setFormData({
+      nome: "",
+      email: "",
+      mensagem: ""
+    });
+    
+    setTimeout(() => {
+      setMostrarMensagem(false);
+    }, 5000);
+  };
+
   return (
-    // REMOVA a tag <Navbar /> e os fragments <></>
     <div className="contato-page">
       
       <div className="cabecalho-contato">
@@ -57,11 +100,24 @@ export default function Contato() {
             Preencha os campos abaixo e entraremos em contato.
           </p>
 
-          <form className="form-contato">
+          {mostrarMensagem && (
+            <div className="mensagem-sucesso">
+              ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+            </div>
+          )}
+
+          <form className="form-contato" onSubmit={handleSubmit}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
               <div className="form-grupo">
                 <label className="label-field">NOME COMPLETO *</label>
-                <input className="input-field" placeholder="Seu nome" required />
+                <input 
+                  className="input-field" 
+                  placeholder="Seu nome" 
+                  required 
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="form-grupo">
@@ -71,6 +127,9 @@ export default function Contato() {
                   className="input-field"
                   placeholder="seu@email.com"
                   required
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -83,6 +142,9 @@ export default function Contato() {
                 placeholder="Como podemos ajudar sua empresa?"
                 required
                 style={{ resize: "none" }}
+                name="mensagem"
+                value={formData.mensagem}
+                onChange={handleChange}
               />
             </div>
 
