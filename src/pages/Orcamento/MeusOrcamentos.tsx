@@ -37,7 +37,7 @@ export default function MeusOrcamentos() {
     setErro("");
 
     try {
-      const response = await fetch(`http://localhost:3000/orcamentos`, {
+      const response = await fetch("http://localhost:3000/orcamentos", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,11 +49,36 @@ export default function MeusOrcamentos() {
 
       const data = await response.json();
       setOrcamentos(data.orcamentos);
-
     } catch (error) {
       setErro("Erro ao carregar seus orçamentos. Tente novamente.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function excluirOrcamento(id: number) {
+    const confirmar = window.confirm("Tem certeza que deseja excluir este orçamento?");
+
+    if (!confirmar) return;
+
+    try {
+      const response = await fetch(`http://localhost:3000/orcamentos/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErro(data.message || "Erro ao excluir orçamento");
+        return;
+      }
+
+      setOrcamentos((prev) => prev.filter((orcamento) => orcamento.id !== id));
+    } catch (error) {
+      setErro("Erro ao excluir orçamento. Tente novamente.");
     }
   }
 
@@ -82,6 +107,7 @@ export default function MeusOrcamentos() {
         <h1>Meus Orçamentos</h1>
         {user && <p className="usuario-logado">Olá, {user.nome}</p>}
         <p className="subtitle">Histórico de orçamentos solicitados</p>
+
         {erro && <div className="erro">{erro}</div>}
 
         {orcamentos.length === 0 ? (
@@ -126,10 +152,17 @@ export default function MeusOrcamentos() {
 
                 <div className="orcamento-actions">
                   <button
-                    onClick={() => navigate(`/orcamento/${orcamento.id}`)}
-                    className="btn-ver"
+                    onClick={() => navigate(`/editar-orcamento/${orcamento.id}`)}
+                    className="btn-editar"
                   >
-                    👁️ Ver Detalhes
+                    ✏️ Editar
+                  </button>
+
+                  <button
+                    onClick={() => excluirOrcamento(orcamento.id)}
+                    className="btn-excluir"
+                  >
+                    🗑️ Excluir
                   </button>
                 </div>
               </div>

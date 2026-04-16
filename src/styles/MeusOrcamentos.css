@@ -204,3 +204,35 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.btn-editar {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.btn-editar:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-excluir {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.btn-excluir:hover {
+  background: #ef4444;
+  color: white;
+}

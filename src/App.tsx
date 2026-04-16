@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react"; // ← ADICIONE ESTA LINHA
+import { useEffect } from "react";
 import Navbar from "./layouts/Navbar";
 import HeroSection from "./components/Hero/HeroSection";
 import Section from "./components/Produto/ProdutoSection";
@@ -15,12 +15,12 @@ import Login from "./pages/Auth/Login";
 import Cadastro from "./pages/Auth/Cadastro";
 import Orcamento from "./pages/Orcamento/Orcamento";
 import MeusOrcamentos from "./pages/Orcamento/MeusOrcamentos";
-import Contato from "./pages/Institucional/Contato"; 
+import EditarOrcamento from "./pages/Orcamento/EditarOrcamento";
+import Contato from "./pages/Institucional/Contato";
 import Sobre from "./pages/Institucional/Sobre";
 import EditarUsuario from "./pages/Perfil/EditarUsuario";
 import { AuthProvider } from "./context/AuthContext";
 import "./styles/App.css";
-
 
 function Home() {
   return (
@@ -37,7 +37,7 @@ function BotaoFlutuanteOrcamento() {
 
   const handleClick = () => {
     const token = localStorage.getItem("token");
-    
+
     if (token) {
       navigate("/orcamento");
     } else {
@@ -47,7 +47,7 @@ function BotaoFlutuanteOrcamento() {
         "Você será redirecionado para criar sua conta ou fazer login.\n\n" +
         "Clique em OK para continuar."
       );
-      
+
       if (confirmou) {
         navigate("/cadastro");
       }
@@ -64,46 +64,47 @@ function BotaoFlutuanteOrcamento() {
 function AppWrapper() {
   const location = useLocation();
 
-
   useEffect(() => {
-
     if (location.hash) {
-      const id = location.hash.replace('#', '');
+      const id = location.hash.replace("#", "");
       const element = document.getElementById(id);
-      
+
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }, 100);
       }
     }
-  }, [location]); 
+  }, [location]);
 
   const rotasSemNavbarFooter =
-  location.pathname === "/login" ||
-  location.pathname === "/cadastro" ||
-  location.pathname === "/orcamento" ||
-  location.pathname === "/meus-orcamentos" ||
-  location.pathname === "/editar-usuario" ;
-  
-  const mostrarBotao = location.pathname !== "/login" && 
-                       location.pathname !== "/cadastro" && 
-                       location.pathname !== "/orcamento" &&
-                       location.pathname !== "/meus-orcamentos" &&
-                       location.pathname !== "/contato" &&
-                       location.pathname !== "/sobre" &&
-                       location.pathname !== "/florestal" &&
-                       location.pathname !== "/industrial" &&
-                       location.pathname !== "/urbanos" &&
-                       location.pathname !== "/incendioa" &&
-                       location.pathname !== "/incendiob" &&
-                       location.pathname !== "/incendiod" &&
-                       location.pathname !== "/editar-usuario";
+    location.pathname === "/login" ||
+    location.pathname === "/cadastro" ||
+    location.pathname === "/orcamento" ||
+    location.pathname === "/meus-orcamentos" ||
+    location.pathname === "/editar-usuario" ||
+    location.pathname.startsWith("/editar-orcamento");
+
+  const mostrarBotao =
+    location.pathname !== "/login" &&
+    location.pathname !== "/cadastro" &&
+    location.pathname !== "/orcamento" &&
+    location.pathname !== "/meus-orcamentos" &&
+    location.pathname !== "/contato" &&
+    location.pathname !== "/sobre" &&
+    location.pathname !== "/florestal" &&
+    location.pathname !== "/industrial" &&
+    location.pathname !== "/urbanos" &&
+    location.pathname !== "/incendioa" &&
+    location.pathname !== "/incendiob" &&
+    location.pathname !== "/incendiod" &&
+    location.pathname !== "/editar-usuario" &&
+    !location.pathname.startsWith("/editar-orcamento");
+
   return (
     <>
-
       {!rotasSemNavbarFooter && <Navbar />}
-      
+
       {mostrarBotao && <BotaoFlutuanteOrcamento />}
 
       <Routes>
@@ -118,7 +119,8 @@ function AppWrapper() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/orcamento" element={<Orcamento />} />
         <Route path="/meus-orcamentos" element={<MeusOrcamentos />} />
-        <Route path="/contato" element={<Contato />} /> 
+        <Route path="/editar-orcamento/:id" element={<EditarOrcamento />} />
+        <Route path="/contato" element={<Contato />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/editar-usuario" element={<EditarUsuario />} />
       </Routes>
@@ -131,9 +133,9 @@ function AppWrapper() {
 function App() {
   return (
     <AuthProvider>
-    <BrowserRouter>
-    <AppWrapper />
-    </BrowserRouter>
+      <BrowserRouter>
+        <AppWrapper />
+      </BrowserRouter>
     </AuthProvider>
   );
 }
