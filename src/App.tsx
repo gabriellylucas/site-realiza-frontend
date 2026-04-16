@@ -21,6 +21,7 @@ import Sobre from "./pages/Institucional/Sobre";
 import EditarUsuario from "./pages/Perfil/EditarUsuario";
 import { AuthProvider } from "./context/AuthContext";
 import ListarContatos from "./pages/Institucional/ListarContatos";
+import EditarContato from "./pages/Institucional/EditarContato";
 import "./styles/App.css";
 
 function Home() {
@@ -125,6 +126,7 @@ function AppWrapper() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/editar-usuario" element={<EditarUsuario />} />
         <Route path="/contatos" element={<ListarContatos />} />
+        <Route path="/editar-contato/:id" element={<EditarContato />} />
       </Routes>
 
       {!rotasSemNavbarFooter && <Footer />}

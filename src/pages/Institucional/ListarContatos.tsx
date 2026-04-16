@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../styles/ListarContatos.css";
 
+
 interface Contato {
   id: number;
   nome: string;
@@ -18,13 +19,22 @@ export default function ListarContatos() {
   const [emailEditado, setEmailEditado] = useState("");
   const [mensagemEditada, setMensagemEditada] = useState("");
 
+  const [pagina, setPagina] = useState(1);
+  const [totalPaginas, setTotalPaginas] = useState(1);
+  const limite = 5;
+
   useEffect(() => {
     carregarContatos();
-  }, []);
+  }, [pagina]);
 
   async function carregarContatos() {
+    setErro("");
+
     try {
-      const response = await fetch("http://localhost:3000/contatos");
+      const response = await fetch(
+        `http://localhost:3000/contatos?page=${pagina}&limit=${limite}`
+      );
+
       const data = await response.json();
 
       if (!response.ok) {
@@ -32,21 +42,20 @@ export default function ListarContatos() {
         return;
       }
 
-      setContatos(data);
+      setContatos(data.contatos || []);
+      setTotalPaginas(data.pagination?.totalPages || 1);
     } catch (error) {
       setErro("Erro ao conectar com o servidor");
     }
   }
 
-  function editarContato(contato: Contato) {
-    setContatoEditando(contato);
-    setNomeEditado(contato.nome);
-    setEmailEditado(contato.email);
-    setMensagemEditada(contato.mensagem);
-  }
-
   async function salvarEdicao() {
     if (!contatoEditando) return;
+
+     if (!nomeEditado || !emailEditado || !mensagemEditada) {
+     alert("Preencha todos os campos obrigatórios");
+     return;
+    }
 
     try {
       const response = await fetch(
@@ -91,7 +100,14 @@ export default function ListarContatos() {
         return;
       }
 
-      carregarContatos();
+      const novaLista = contatos.filter((contato) => contato.id !== id);
+      setContatos(novaLista);
+
+      if (novaLista.length === 0 && pagina > 1) {
+        setPagina((prev) => prev - 1);
+      } else {
+        carregarContatos();
+      }
     } catch (error) {
       alert("Erro ao conectar com o servidor");
     }
@@ -145,29 +161,53 @@ export default function ListarContatos() {
         {contatos.length === 0 ? (
           <p className="lista-vazia">Nenhuma mensagem encontrada.</p>
         ) : (
-          contatos.map((contato) => (
-            <div key={contato.id} className="card-contato">
-              <p><strong>Nome:</strong> {contato.nome}</p>
-              <p><strong>Email:</strong> {contato.email}</p>
-              <p><strong>Mensagem:</strong> {contato.mensagem}</p>
+          <>
+            {contatos.map((contato) => (
+              <div key={contato.id} className="card-contato">
+                <p><strong>Nome:</strong> {contato.nome}</p>
+                <p><strong>Email:</strong> {contato.email}</p>
+                <p><strong>Mensagem:</strong> {contato.mensagem}</p>
 
-              <div className="card-acoes">
-                <button
-                  className="btn-editar"
-                  onClick={() => editarContato(contato)}
-                >
-                  Editar
-                </button>
+                <div className="card-acoes">
+                  <button
+                    className="btn-editar"
+                    onClick={() => window.location.href = `/editar-contato/${contato.id}`}
+                  >
+                    Editar
+                  </button>
 
-                <button
-                  className="btn-excluir"
-                  onClick={() => excluirContato(contato.id)}
-                >
-                  Excluir
-                </button>
+                  <button
+                    className="btn-excluir"
+                    onClick={() => excluirContato(contato.id)}
+                  >
+                    Excluir
+                  </button>
+                </div>
               </div>
+            ))}
+
+            <div className="paginacao">
+              <button
+                onClick={() => setPagina((prev) => prev - 1)}
+                disabled={pagina === 1}
+                className="btn-paginacao"
+              >
+                Anterior
+              </button>
+
+              <span className="pagina-atual">
+                Página {pagina} de {totalPaginas}
+              </span>
+
+              <button
+                onClick={() => setPagina((prev) => prev + 1)}
+                disabled={pagina === totalPaginas}
+                className="btn-paginacao"
+              >
+                Próxima
+              </button>
             </div>
-          ))
+          </>
         )}
       </div>
     </div>

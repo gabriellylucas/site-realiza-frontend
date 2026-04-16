@@ -17,9 +17,14 @@ interface Orcamento {
 export default function MeusOrcamentos() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+
   const [orcamentos, setOrcamentos] = useState<Orcamento[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
+
+  const [pagina, setPagina] = useState(1);
+  const [totalPaginas, setTotalPaginas] = useState(1);
+  const limite = 5;
 
   const token = localStorage.getItem("token");
 
@@ -30,25 +35,30 @@ export default function MeusOrcamentos() {
     }
 
     carregarOrcamentos();
-  }, []);
+  }, [pagina]);
 
   async function carregarOrcamentos() {
     setLoading(true);
     setErro("");
 
     try {
-      const response = await fetch("http://localhost:3000/orcamentos", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/orcamentos?page=${pagina}&limit=${limite}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Erro ao carregar orçamentos");
       }
 
       const data = await response.json();
-      setOrcamentos(data.orcamentos);
+
+      setOrcamentos(data.orcamentos || []);
+      setTotalPaginas(data.pagination?.totalPages || 1);
     } catch (error) {
       setErro("Erro ao carregar seus orçamentos. Tente novamente.");
     } finally {
@@ -76,7 +86,14 @@ export default function MeusOrcamentos() {
         return;
       }
 
-      setOrcamentos((prev) => prev.filter((orcamento) => orcamento.id !== id));
+      const novaLista = orcamentos.filter((orcamento) => orcamento.id !== id);
+      setOrcamentos(novaLista);
+
+      if (novaLista.length === 0 && pagina > 1) {
+        setPagina((prev) => prev - 1);
+      } else {
+        carregarOrcamentos();
+      }
     } catch (error) {
       setErro("Erro ao excluir orçamento. Tente novamente.");
     }
@@ -121,53 +138,77 @@ export default function MeusOrcamentos() {
             </button>
           </div>
         ) : (
-          <div className="orcamentos-list">
-            {orcamentos.map((orcamento) => (
-              <div key={orcamento.id} className="orcamento-card">
-                <div className="orcamento-header">
-                  <h3>{orcamento.empresa}</h3>
-                  <span className={`status ${orcamento.status}`}>
-                    {orcamento.status === "EM_ANALISE" && "⏳ Em análise"}
-                    {orcamento.status === "APROVADO" && "✅ Aprovado"}
-                    {orcamento.status === "RECUSADO" && "❌ Recusado"}
-                  </span>
-                </div>
+          <>
+            <div className="orcamentos-list">
+              {orcamentos.map((orcamento) => (
+                <div key={orcamento.id} className="orcamento-card">
+                  <div className="orcamento-header">
+                    <h3>{orcamento.empresa}</h3>
+                    <span className={`status ${orcamento.status}`}>
+                      {orcamento.status === "EM_ANALISE" && "⏳ Em análise"}
+                      {orcamento.status === "APROVADO" && "✅ Aprovado"}
+                      {orcamento.status === "RECUSADO" && "❌ Recusado"}
+                    </span>
+                  </div>
 
-                <div className="orcamento-info">
-                  <p><strong>CNPJ:</strong> {orcamento.cnpj}</p>
-                  <p><strong>Local:</strong> {orcamento.local}</p>
-                  <p><strong>Data:</strong> {formatarData(orcamento.created_at)}</p>
-                </div>
+                  <div className="orcamento-info">
+                    <p><strong>CNPJ:</strong> {orcamento.cnpj}</p>
+                    <p><strong>Local:</strong> {orcamento.local}</p>
+                    <p><strong>Data:</strong> {formatarData(orcamento.created_at)}</p>
+                  </div>
 
-                <div className="orcamento-valores">
-                  <p>
-                    <strong>Quantidade:</strong>{" "}
-                    {Number(orcamento.quantidade_total_kg).toFixed(2)} kg
-                  </p>
-                  <p className="valor-total">
-                    <strong>Valor:</strong>{" "}
-                    {formatarValor(Number(orcamento.investimento_total))}
-                  </p>
-                </div>
+                  <div className="orcamento-valores">
+                    <p>
+                      <strong>Quantidade:</strong>{" "}
+                      {Number(orcamento.quantidade_total_kg).toFixed(2)} kg
+                    </p>
+                    <p className="valor-total">
+                      <strong>Valor:</strong>{" "}
+                      {formatarValor(Number(orcamento.investimento_total))}
+                    </p>
+                  </div>
 
-                <div className="orcamento-actions">
-                  <button
-                    onClick={() => navigate(`/editar-orcamento/${orcamento.id}`)}
-                    className="btn-editar"
-                  >
-                    ✏️ Editar
-                  </button>
+                  <div className="orcamento-actions">
+                    <button
+                      onClick={() => navigate(`/editar-orcamento/${orcamento.id}`)}
+                      className="btn-editar"
+                    >
+                      ✏️ Editar
+                    </button>
 
-                  <button
-                    onClick={() => excluirOrcamento(orcamento.id)}
-                    className="btn-excluir"
-                  >
-                    🗑️ Excluir
-                  </button>
+                    <button
+                      onClick={() => excluirOrcamento(orcamento.id)}
+                      className="btn-excluir"
+                    >
+                      🗑️ Excluir
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+            <div className="paginacao">
+              <button
+                onClick={() => setPagina((prev) => prev - 1)}
+                disabled={pagina === 1}
+                className="btn-paginacao"
+              >
+                Anterior
+              </button>
+
+              <span className="pagina-atual">
+                Página {pagina} de {totalPaginas}
+              </span>
+
+              <button
+                onClick={() => setPagina((prev) => prev + 1)}
+                disabled={pagina === totalPaginas}
+                className="btn-paginacao"
+              >
+                Próxima
+              </button>
+            </div>
+          </>
         )}
 
         <button
