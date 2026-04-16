@@ -3,6 +3,7 @@ import { Send } from "lucide-react";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 
+
 interface FormData {
   nome: string;
   email: string;
@@ -10,12 +11,13 @@ interface FormData {
 }
 
 export default function Contato() {
+
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     email: "",
     mensagem: ""
   });
-  
+
   const [mostrarMensagem, setMostrarMensagem] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -26,30 +28,49 @@ export default function Contato() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!formData.nome || !formData.email || !formData.mensagem) {
       alert("Por favor, preencha todos os campos.");
       return;
     }
-    
-    setMostrarMensagem(true);
-    
-    setFormData({
-      nome: "",
-      email: "",
-      mensagem: ""
-    });
-    
-    setTimeout(() => {
-      setMostrarMensagem(false);
-    }, 5000);
+
+    try {
+      const response = await fetch("http://localhost:3000/contatos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Erro ao enviar mensagem");
+        return;
+      }
+
+      setMostrarMensagem(true);
+
+      setFormData({
+        nome: "",
+        email: "",
+        mensagem: ""
+      });
+
+      setTimeout(() => {
+        setMostrarMensagem(false);
+      }, 5000);
+
+    } catch (error) {
+      alert("Erro ao conectar com o servidor");
+    }
   };
 
   return (
     <div className="contato-page">
-      
       <div className="cabecalho-contato">
         <h1>Entre em Contato</h1>
         <p>Nossa equipe está pronta para atendê-lo</p>
@@ -57,7 +78,6 @@ export default function Contato() {
       </div>
 
       <div className="contato-wrapper">
-        
         <div className="card-equipe">
           <h2>Nossa Equipe</h2>
 
@@ -102,7 +122,15 @@ export default function Contato() {
 
           {mostrarMensagem && (
             <div className="mensagem-sucesso">
-              ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+              <p>✅ Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
+
+              <button
+                type="button"
+                className="btn-ver-mensagens"
+                onClick={() => window.location.href = "/contatos"}
+              >
+                Ver mensagens
+              </button>
             </div>
           )}
 
@@ -110,10 +138,10 @@ export default function Contato() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
               <div className="form-grupo">
                 <label className="label-field">NOME COMPLETO *</label>
-                <input 
-                  className="input-field" 
-                  placeholder="Seu nome" 
-                  required 
+                <input
+                  className="input-field"
+                  placeholder="Seu nome"
+                  required
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}

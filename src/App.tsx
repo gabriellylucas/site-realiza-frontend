@@ -20,6 +20,7 @@ import Contato from "./pages/Institucional/Contato";
 import Sobre from "./pages/Institucional/Sobre";
 import EditarUsuario from "./pages/Perfil/EditarUsuario";
 import { AuthProvider } from "./context/AuthContext";
+import ListarContatos from "./pages/Institucional/ListarContatos";
 import "./styles/App.css";
 
 function Home() {
@@ -123,6 +124,7 @@ function AppWrapper() {
         <Route path="/contato" element={<Contato />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/editar-usuario" element={<EditarUsuario />} />
+        <Route path="/contatos" element={<ListarContatos />} />
       </Routes>
 
       {!rotasSemNavbarFooter && <Footer />}

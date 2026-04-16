@@ -234,3 +234,19 @@ input:-webkit-autofill:active {
   outline: none;
   box-shadow: none;
 }
+
+.btn-ver-mensagens {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0E9FA2, #136a73);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-ver-mensagens:hover {
+  transform: translateY(-2px);
+}
