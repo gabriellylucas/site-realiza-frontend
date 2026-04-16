@@ -2,25 +2,49 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/ListarContatos.css";
 
+interface Contato {
+  id?: number;
+  nome: string;
+  email: string;
+  mensagem: string;
+}
+
+interface ApiResponse {
+  message?: string;
+}
+
 export default function EditarContato() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
-  const [erro, setErro] = useState("");
-  const [sucesso, setSucesso] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [nome, setNome] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [mensagem, setMensagem] = useState<string>("");
+  const [erro, setErro] = useState<string>("");
+  const [sucesso, setSucesso] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (!token) {
+      setErro("Usuário não autenticado");
+      setLoading(false);
+      return;
+    }
+
     carregarContato();
   }, []);
 
-  async function carregarContato() {
+  async function carregarContato(): Promise<void> {
     try {
-      const response = await fetch(`http://localhost:3000/contatos/${id}`);
-      const data = await response.json();
+      const response = await fetch(`http://localhost:3000/contatos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data: Contato & ApiResponse = await response.json();
 
       if (!response.ok) {
         setErro(data.message || "Erro ao buscar contato");
@@ -38,7 +62,7 @@ export default function EditarContato() {
     }
   }
 
-  async function salvarEdicao() {
+  async function salvarEdicao(): Promise<void> {
     setErro("");
     setSucesso("");
 
@@ -47,11 +71,17 @@ export default function EditarContato() {
       return;
     }
 
+    if (!token) {
+      setErro("Usuário não autenticado");
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:3000/contatos/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           nome,
@@ -60,7 +90,7 @@ export default function EditarContato() {
         }),
       });
 
-      const data = await response.json();
+      const data: ApiResponse = await response.json();
 
       if (!response.ok) {
         setErro(data.message || "Erro ao atualizar mensagem");

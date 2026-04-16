@@ -101,3 +101,23 @@
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(255, 94, 0, 0.4); /* igual ao padrão */
 }
+
+.editar-usuario-box .btn-voltar {
+  background: linear-gradient(90deg, #ff6a00, #ff3c00);
+  border: none;
+  color: white;
+
+  padding: 8px 16px;
+  font-size: 14px;
+
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.editar-usuario-box .btn-voltar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
+}

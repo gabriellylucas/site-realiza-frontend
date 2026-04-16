@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Section.css";
 import { FaFireExtinguisher, FaShieldAlt, FaLeaf, FaBolt } from "react-icons/fa";
 
-const IncendioA = () => {
+const IncendioA: React.FC = () => {
   return (
     <section className="incendioa">
       

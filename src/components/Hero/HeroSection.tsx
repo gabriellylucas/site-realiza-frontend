@@ -1,7 +1,8 @@
 import bannerImg from "../../assets/banner.png";
 import { useNavigate } from "react-router-dom"; 
+import React from "react";
 
-function HeroSection () {
+const HeroSection: React.FC = () => {
   const navigate = useNavigate(); 
 
   const handleSolicitarOrcamento = () => {

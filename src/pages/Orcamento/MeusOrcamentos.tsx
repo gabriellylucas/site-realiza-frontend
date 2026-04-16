@@ -14,16 +14,24 @@ interface Orcamento {
   created_at: string;
 }
 
+interface ApiResponse {
+  orcamentos: Orcamento[];
+  pagination?: {
+    totalPages: number;
+  };
+  message?: string;
+}
+
 export default function MeusOrcamentos() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   const [orcamentos, setOrcamentos] = useState<Orcamento[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [erro, setErro] = useState("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [erro, setErro] = useState<string>("");
 
-  const [pagina, setPagina] = useState(1);
-  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [pagina, setPagina] = useState<number>(1);
+  const [totalPaginas, setTotalPaginas] = useState<number>(1);
   const limite = 5;
 
   const token = localStorage.getItem("token");
@@ -37,7 +45,7 @@ export default function MeusOrcamentos() {
     carregarOrcamentos();
   }, [pagina]);
 
-  async function carregarOrcamentos() {
+  async function carregarOrcamentos(): Promise<void> {
     setLoading(true);
     setErro("");
 
@@ -51,11 +59,12 @@ export default function MeusOrcamentos() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Erro ao carregar orçamentos");
-      }
+      const data: ApiResponse = await response.json();
 
-      const data = await response.json();
+      if (!response.ok) {
+        setErro(data.message || "Erro ao carregar orçamentos");
+        return;
+      }
 
       setOrcamentos(data.orcamentos || []);
       setTotalPaginas(data.pagination?.totalPages || 1);
@@ -66,27 +75,34 @@ export default function MeusOrcamentos() {
     }
   }
 
-  async function excluirOrcamento(id: number) {
-    const confirmar = window.confirm("Tem certeza que deseja excluir este orçamento?");
+  async function excluirOrcamento(id: number): Promise<void> {
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este orçamento?"
+    );
 
     if (!confirmar) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/orcamentos/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/orcamentos/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      const data = await response.json();
+      const data: ApiResponse = await response.json();
 
       if (!response.ok) {
         setErro(data.message || "Erro ao excluir orçamento");
         return;
       }
 
-      const novaLista = orcamentos.filter((orcamento) => orcamento.id !== id);
+      const novaLista = orcamentos.filter(
+        (orcamento) => orcamento.id !== id
+      );
       setOrcamentos(novaLista);
 
       if (novaLista.length === 0 && pagina > 1) {
@@ -121,8 +137,23 @@ export default function MeusOrcamentos() {
   return (
     <div className="meus-orcamentos-container">
       <div className="meus-orcamentos-box">
+        <button
+          onClick={() => navigate("/")}
+          className="btn-voltar-inicio"
+        >
+          ← Voltar para o início
+        </button>
+
         <h1>Meus Orçamentos</h1>
         {user && <p className="usuario-logado">Olá, {user.nome}</p>}
+
+        <button
+       onClick={() => navigate("/editar-usuario")}
+       className="btn-editar-usuario"
+       >
+         ⚙️ Editar Perfil
+         </button>
+
         <p className="subtitle">Histórico de orçamentos solicitados</p>
 
         {erro && <div className="erro">{erro}</div>}
@@ -170,7 +201,9 @@ export default function MeusOrcamentos() {
 
                   <div className="orcamento-actions">
                     <button
-                      onClick={() => navigate(`/editar-orcamento/${orcamento.id}`)}
+                      onClick={() =>
+                        navigate(`/editar-orcamento/${orcamento.id}`)
+                      }
                       className="btn-editar"
                     >
                       ✏️ Editar

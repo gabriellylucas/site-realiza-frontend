@@ -15,7 +15,7 @@ type AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  setUser: () => null,
+  setUser: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -24,7 +24,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const userStorage = localStorage.getItem("user");
     if (userStorage) {
-      setUser(JSON.parse(userStorage));
+      const parsedUser: User = JSON.parse(userStorage);
+      setUser(parsedUser);
     }
   }, []);
 

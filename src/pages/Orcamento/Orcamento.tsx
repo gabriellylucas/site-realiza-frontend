@@ -4,13 +4,6 @@ import "../../styles/Orcamento.css";
 import fundo from "../../assets/classed.png";
 import { useNavigate } from "react-router-dom";
 
-type TipoEquipamento = "ABT" | "ACF" | "ABTS" | "AT" | "KIT";
-
-interface Equipamento {
-  tipo: TipoEquipamento;
-  litragem: number;
-  quantidade: number;
-}
 
 interface FormErrors {
   nome?: string;
@@ -23,8 +16,16 @@ interface FormErrors {
   equipamentos?: string;
 }
 
+interface UserStorage {
+  id: number;
+  nome: string;
+  email: string;
+  cpf: string;
+}
+
 const VALOR_POR_KG = 3960;
 
+// TipoEquipamento vem do global 
 const DOSAGEM_POR_TIPO: Record<TipoEquipamento, number> = {
   ABT: 0.5,
   ACF: 0.5,
@@ -119,6 +120,8 @@ function aplicarMascaraCNPJ(valor: string): string {
   return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d+)/, '$1.$2.$3/$4-$5');
 }
 
+
+// Equipamento é uma interface global 
 function calcularTotal(equipamentos: Equipamento[]): { totalKg: number; valor: number } {
   let totalKg = 0;
   
@@ -148,7 +151,7 @@ export default function Orcamento() {
   const [empresa, setEmpresa] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [local, setLocal] = useState("");
-
+ // Uso do type global Equipamento sem necessidade de import
   const [equipamentos, setEquipamentos] = useState<Equipamento[]>([]);
   
   const [errors, setErrors] = useState<FormErrors>({});
@@ -204,17 +207,28 @@ export default function Orcamento() {
     setEquipamentos(novos);
   }
 
-  function atualizarEquipamento(index: number, campo: keyof Equipamento, valor: string | number): void {
-    const novos = [...equipamentos];
-    
-    if (campo === 'tipo') {
-      novos[index].tipo = valor as TipoEquipamento;
-    } else {
-      novos[index][campo] = Number(valor);
-    }
-    
-    setEquipamentos(novos);
+  // Equipamento utiliza os campos da interface global 
+  function atualizarEquipamento(
+  index: number,
+  campo: keyof Equipamento,
+  valor: string | number
+): void {
+  const novos = [...equipamentos];
+
+  if (campo === "tipo") {
+    novos[index].tipo = valor as TipoEquipamento;
   }
+
+  if (campo === "litragem") {
+    novos[index].litragem = Number(valor);
+  }
+
+  if (campo === "quantidade") {
+    novos[index].quantidade = Number(valor);
+  }
+
+  setEquipamentos(novos);
+}
 
   function validarFormulario(): boolean {
     const newErrors: FormErrors = {};
@@ -262,8 +276,8 @@ export default function Orcamento() {
     try {
       const resultado = calcularTotal(equipamentos);
       
-      const userData = localStorage.getItem("user");
-      const user = userData ? JSON.parse(userData) : null;
+       const userData = localStorage.getItem("user");
+       const user: UserStorage | null = userData ? JSON.parse(userData) : null;
       
       await api.post("/orcamentos", {
         usuarioId: user?.id,  
@@ -282,8 +296,8 @@ export default function Orcamento() {
       });
       
       setEnviadoComSucesso(true);
-    } catch (error: any) {
-      alert("Erro ao enviar orçamento. Tente novamente.");
+     } catch (error) {
+     alert("Erro ao enviar orçamento. Tente novamente.");
     } finally {
       setLoading(false);
     }

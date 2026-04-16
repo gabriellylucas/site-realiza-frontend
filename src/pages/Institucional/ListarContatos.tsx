@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../styles/ListarContatos.css";
 
-
 interface Contato {
   id: number;
   nome: string;
@@ -10,35 +9,52 @@ interface Contato {
   created_at: string;
 }
 
+interface ApiResponse {
+  contatos: Contato[];
+  pagination?: {
+    totalPages: number;
+  };
+  message?: string;
+}
+
 export default function ListarContatos() {
   const [contatos, setContatos] = useState<Contato[]>([]);
-  const [erro, setErro] = useState("");
+  const [erro, setErro] = useState<string>("");
 
-  const [contatoEditando, setContatoEditando] = useState<Contato | null>(null);
-  const [nomeEditado, setNomeEditado] = useState("");
-  const [emailEditado, setEmailEditado] = useState("");
-  const [mensagemEditada, setMensagemEditada] = useState("");
-
-  const [pagina, setPagina] = useState(1);
-  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [pagina, setPagina] = useState<number>(1);
+  const [totalPaginas, setTotalPaginas] = useState<number>(1);
   const limite = 5;
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     carregarContatos();
   }, [pagina]);
 
-  async function carregarContatos() {
+  async function carregarContatos(): Promise<void> {
     setErro("");
+
+    if (!token) {
+      setErro("Usuário não autenticado");
+      setContatos([]);
+      return;
+    }
 
     try {
       const response = await fetch(
-        `http://localhost:3000/contatos?page=${pagina}&limit=${limite}`
+        `http://localhost:3000/contatos?page=${pagina}&limit=${limite}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
-      const data = await response.json();
+      const data: ApiResponse = await response.json();
 
       if (!response.ok) {
-        setErro("Erro ao buscar mensagens");
+        setErro(data.message || "Erro ao buscar mensagens");
+        setContatos([]);
         return;
       }
 
@@ -46,53 +62,25 @@ export default function ListarContatos() {
       setTotalPaginas(data.pagination?.totalPages || 1);
     } catch (error) {
       setErro("Erro ao conectar com o servidor");
+      setContatos([]);
     }
   }
 
-  async function salvarEdicao() {
-    if (!contatoEditando) return;
-
-     if (!nomeEditado || !emailEditado || !mensagemEditada) {
-     alert("Preencha todos os campos obrigatórios");
-     return;
-    }
-
-    try {
-      const response = await fetch(
-        `http://localhost:3000/contatos/${contatoEditando.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nome: nomeEditado,
-            email: emailEditado,
-            mensagem: mensagemEditada,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        alert("Erro ao atualizar mensagem");
-        return;
-      }
-
-      setContatoEditando(null);
-      carregarContatos();
-    } catch (error) {
-      alert("Erro ao conectar com o servidor");
-    }
-  }
-
-  async function excluirContato(id: number) {
+  async function excluirContato(id: number): Promise<void> {
     const confirmar = window.confirm("Deseja excluir essa mensagem?");
-
     if (!confirmar) return;
+
+    if (!token) {
+      alert("Usuário não autenticado");
+      return;
+    }
 
     try {
       const response = await fetch(`http://localhost:3000/contatos/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (!response.ok) {
@@ -120,44 +108,6 @@ export default function ListarContatos() {
 
         {erro && <p className="erro-contatos">{erro}</p>}
 
-        {contatoEditando && (
-          <div className="box-edicao">
-            <h2>Editando mensagem</h2>
-
-            <input
-              value={nomeEditado}
-              onChange={(e) => setNomeEditado(e.target.value)}
-              placeholder="Nome"
-            />
-
-            <input
-              value={emailEditado}
-              onChange={(e) => setEmailEditado(e.target.value)}
-              placeholder="Email"
-            />
-
-            <textarea
-              value={mensagemEditada}
-              onChange={(e) => setMensagemEditada(e.target.value)}
-              placeholder="Mensagem"
-              rows={4}
-            />
-
-            <div className="acoes-edicao">
-              <button className="btn-salvar" onClick={salvarEdicao}>
-                Salvar
-              </button>
-
-              <button
-                className="btn-cancelar"
-                onClick={() => setContatoEditando(null)}
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        )}
-
         {contatos.length === 0 ? (
           <p className="lista-vazia">Nenhuma mensagem encontrada.</p>
         ) : (
@@ -171,7 +121,9 @@ export default function ListarContatos() {
                 <div className="card-acoes">
                   <button
                     className="btn-editar"
-                    onClick={() => window.location.href = `/editar-contato/${contato.id}`}
+                    onClick={() =>
+                      (window.location.href = `/editar-contato/${contato.id}`)
+                    }
                   >
                     Editar
                   </button>

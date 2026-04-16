@@ -1,9 +1,12 @@
 import { useState, useContext, useEffect } from "react";
 import "../../styles/EditarUsuario.css";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function EditarUsuario() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -119,51 +122,60 @@ export default function EditarUsuario() {
   };
 
   const handleExcluirConta = async () => {
-  setErro("");
-  setSucesso("");
+    setErro("");
+    setSucesso("");
 
-  const confirmar = window.confirm(
-  "Se sua conta tiver orçamento cadastrado, ela não poderá ser excluída. Deseja continuar?"
-);
+    const confirmar = window.confirm(
+      "Se sua conta tiver orçamento cadastrado, ela não poderá ser excluída. Deseja continuar?"
+    );
 
-  if (!confirmar) return;
+    if (!confirmar) return;
 
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    if (!token) {
-      setErro("Usuário não autenticado");
-      return;
+      if (!token) {
+        setErro("Usuário não autenticado");
+        return;
+      }
+
+      const response = await fetch(`http://localhost:3000/users/delete/${user?.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErro(data.message || "Erro ao excluir conta");
+        return;
+      }
+
+      setSucesso("Conta excluída com sucesso!");
+      localStorage.removeItem("token");
+
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1500);
+    } catch (error) {
+      setErro("Erro ao conectar com o servidor");
     }
-
-    const response = await fetch(`http://localhost:3000/users/delete/${user?.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      setErro(data.message || "Erro ao excluir conta");
-      return;
-    }
-
-    setSucesso("Conta excluída com sucesso!");
-    localStorage.removeItem("token");
-
-    setTimeout(() => {
-      window.location.href = "/login";
-    }, 1500);
-  } catch (error) {
-    setErro("Erro ao conectar com o servidor");
-  }
-};
+  };
 
   return (
     <div className="editar-usuario-container">
       <div className="editar-usuario-box">
+
+        {/* 🔥 BOTÃO DE VOLTAR */}
+        <button
+          className="btn-voltar"
+          onClick={() => navigate("/meus-orcamentos")}
+        >
+          ← Voltar para Meus Orçamentos
+        </button>
+
         <h1>Editar Usuário</h1>
 
         <input

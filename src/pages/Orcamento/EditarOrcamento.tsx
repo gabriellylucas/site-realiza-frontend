@@ -2,16 +2,23 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/EditarOrcamento.css";
 
+interface OrcamentoResponse {
+  empresa?: string;
+  cnpj?: string;
+  local?: string;
+  message?: string;
+}
+
 export default function EditarOrcamento() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const [empresa, setEmpresa] = useState("");
-  const [cnpj, setCnpj] = useState("");
-  const [local, setLocal] = useState("");
-  const [erro, setErro] = useState("");
-  const [sucesso, setSucesso] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [empresa, setEmpresa] = useState<string>("");
+  const [cnpj, setCnpj] = useState<string>("");
+  const [local, setLocal] = useState<string>("");
+  const [erro, setErro] = useState<string>("");
+  const [sucesso, setSucesso] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const token = localStorage.getItem("token");
 
@@ -24,40 +31,40 @@ export default function EditarOrcamento() {
     carregarOrcamento();
   }, []);
 
-  async function carregarOrcamento() {
-  try {
-    setLoading(true);
-    setErro("");
+  async function carregarOrcamento(): Promise<void> {
+    try {
+      setLoading(true);
+      setErro("");
 
-    const response = await fetch(`http://localhost:3000/orcamentos/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const response = await fetch(`http://localhost:3000/orcamentos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    const data = await response.json();
+      const data: OrcamentoResponse = await response.json();
 
-    console.log("ID da rota:", id);
-    console.log("Token:", token);
-    console.log("Resposta da API:", data);
-    console.log("Status:", response.status);
+      console.log("ID da rota:", id);
+      console.log("Token:", token);
+      console.log("Resposta da API:", data);
+      console.log("Status:", response.status);
 
-    if (!response.ok) {
-      setErro(data.message || "Erro ao carregar orçamento");
-      return;
+      if (!response.ok) {
+        setErro(data.message || "Erro ao carregar orçamento");
+        return;
+      }
+
+      setEmpresa(data.empresa || "");
+      setCnpj(data.cnpj || "");
+      setLocal(data.local || "");
+    } catch (error) {
+      setErro("Erro ao carregar orçamento");
+    } finally {
+      setLoading(false);
     }
-
-    setEmpresa(data.empresa || "");
-    setCnpj(data.cnpj || "");
-    setLocal(data.local || "");
-  } catch (error) {
-    setErro("Erro ao carregar orçamento");
-  } finally {
-    setLoading(false);
   }
-}
 
-  async function handleSalvar() {
+  async function handleSalvar(): Promise<void> {
     setErro("");
     setSucesso("");
 
@@ -80,7 +87,7 @@ export default function EditarOrcamento() {
         }),
       });
 
-      const data = await response.json();
+      const data: OrcamentoResponse = await response.json();
 
       if (!response.ok) {
         setErro(data.message || "Erro ao atualizar orçamento");

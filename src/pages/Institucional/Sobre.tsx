@@ -1,18 +1,16 @@
 import "../../styles/Sobre.css";
-import fazemosImg from "../../assets/fazemos.jpg";
+import fazemosImg from "../../assets/incendio.jpg";
 import {
   FaLightbulb,
   FaLeaf,
   FaShieldAlt,
-  FaSeedling,
-  FaRocket,
-  FaAward
 } from "react-icons/fa";
 
 export default function Sobre() {
   return (
     <div className="sobre-page">
 
+      {/* HERO */}
       <section className="hero">
         <h1>
           Tecnologia que salva vidas e <br /> protege o planeta
@@ -44,6 +42,7 @@ export default function Sobre() {
         </div>
       </section>
 
+      {/* TRAJETÓRIA */}
       <section className="trajetoria">
         <h2>Nossa Trajetória</h2>
         <p className="subtitulo">
@@ -55,37 +54,39 @@ export default function Sobre() {
 
           <div className="timeline-container">
 
-            <div className="timeline-item">
-              <div className="top-circle-icon"><FaSeedling /></div>
-              <div className="timeline-card">
-                <span className="year-badge">2014</span>
-                <h3>Início como Realiza Fertilizantes</h3>
-                <p>Fundação da empresa com foco em tecnologia agronômica e soluções inovadoras.</p>
-              </div>
-            </div>
+            <div className="timeline-container">
 
-            <div className="timeline-item">
-              <div className="top-circle-icon"><FaRocket /></div>
-              <div className="timeline-card">
-                <span className="year-badge">2021</span>
-                <h3>Transformação em Grupo Realiza</h3>
-                <p>Expansão para 24 inovações tecnológicas.</p>
+              <div className="timeline-item">
+                <div className="timeline-card">
+                  <span className="year-badge">2014</span>
+                  <h3>Início como Realiza Fertilizantes</h3>
+                  <p>Fundação da empresa com foco em tecnologia agronômica e soluções inovadoras.</p>
+                </div>
               </div>
-            </div>
 
-            <div className="timeline-item">
-              <div className="top-circle-icon"><FaAward /></div>
-              <div className="timeline-card">
-                <span className="year-badge">2026</span>
-                <h3>Referência em Nanotecnologia</h3>
-                <p>Consolidação como líder em nanotecnologia antichamas.</p>
+              <div className="timeline-item">
+                <div className="timeline-card">
+                  <span className="year-badge">2021</span>
+                  <h3>Transformação em Grupo Realiza</h3>
+                  <p>Expansão para 24 inovações tecnológicas.</p>
+                </div>
               </div>
+
+              <div className="timeline-item">
+                <div className="timeline-card">
+                  <span className="year-badge">2026</span>
+                  <h3>Referência em Nanotecnologia</h3>
+                  <p>Consolidação como líder em nanotecnologia antichamas.</p>
+                </div>
+              </div>
+
             </div>
 
           </div>
         </div>
       </section>
 
+      {/* O QUE FAZEMOS */}
       <section className="o-que-fazemos">
 
         <h2>O Que Fazemos</h2>
@@ -96,7 +97,7 @@ export default function Sobre() {
         <div className="oqf-grid">
 
           <div className="oqf-left">
-            <img src={fazemosImg} alt="Combate a incêndio" />
+            <img src={fazemosImg} alt="O que fazemos - Realiza" />
 
             <div className="oqf-card grande">
               <h3>Realiza Antichamas</h3>
@@ -139,13 +140,11 @@ export default function Sobre() {
 
         </div>
 
-        <div className="oqf-banner">
-          <h3>Tecnologia de Ponta</h3>
-          <p>Soluções inovadoras para combate a incêndios</p>
-        </div>
+        {/* CARD LARANJA REMOVIDO */}
 
       </section>
 
+      {/* QUEM FAZ */}
       <section className="quem-faz">
 
         <h2>Quem Faz Acontecer</h2>
@@ -173,16 +172,6 @@ export default function Sobre() {
             </div>
           </div>
 
-          <div className="qfa-line"></div>
-
-          <div className="qfa-item">
-            <div className="qfa-icon">📈</div>
-            <div className="qfa-card">
-              <h3>Tecnologia de Ponta</h3>
-              <p>Alta performance</p>
-            </div>
-          </div>
-
         </div>
 
         <div className="qfa-box">
@@ -193,6 +182,7 @@ export default function Sobre() {
 
       </section>
 
+      {/* IMPACTO */}
       <section className="impacto-novo">
 
         <h2>Nosso Impacto</h2>
