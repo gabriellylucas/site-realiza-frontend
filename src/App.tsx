@@ -17,6 +17,8 @@ import Orcamento from "./pages/Orcamento/Orcamento";
 import MeusOrcamentos from "./pages/Orcamento/MeusOrcamentos";
 import Contato from "./pages/Institucional/Contato"; 
 import Sobre from "./pages/Institucional/Sobre";
+import EditarUsuario from "./pages/Perfil/EditarUsuario";
+import { AuthProvider } from "./context/AuthContext";
 import "./styles/App.css";
 
 
@@ -81,7 +83,8 @@ function AppWrapper() {
   location.pathname === "/login" ||
   location.pathname === "/cadastro" ||
   location.pathname === "/orcamento" ||
-  location.pathname === "/meus-orcamentos";
+  location.pathname === "/meus-orcamentos" ||
+  location.pathname === "/editar-usuario" ;
   
   const mostrarBotao = location.pathname !== "/login" && 
                        location.pathname !== "/cadastro" && 
@@ -94,7 +97,8 @@ function AppWrapper() {
                        location.pathname !== "/urbanos" &&
                        location.pathname !== "/incendioa" &&
                        location.pathname !== "/incendiob" &&
-                       location.pathname !== "/incendiod";
+                       location.pathname !== "/incendiod" &&
+                       location.pathname !== "/editar-usuario";
   return (
     <>
 
@@ -116,6 +120,7 @@ function AppWrapper() {
         <Route path="/meus-orcamentos" element={<MeusOrcamentos />} />
         <Route path="/contato" element={<Contato />} /> 
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/editar-usuario" element={<EditarUsuario />} />
       </Routes>
 
       {!rotasSemNavbarFooter && <Footer />}
@@ -125,9 +130,11 @@ function AppWrapper() {
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
-      <AppWrapper />
+    <AppWrapper />
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 

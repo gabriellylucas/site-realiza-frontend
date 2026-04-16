@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import "../../styles/Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -8,9 +9,21 @@ export default function Login() {
   const [erro, setErro] = useState<string>("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (location.state?.sucesso) {
+      const timer = setTimeout(() => {
+        navigate(location.pathname, { replace: true });
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [location, navigate]);
 
   function validarEmail(email: string): boolean {
-    return /\S+@\S+\.\S+/.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
   const handleLogin = async () => {
@@ -47,7 +60,19 @@ export default function Login() {
         return;
       }
 
-      localStorage.setItem("token", data.token);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+
+      if (data.user) {
+      setUser({
+      id: data.user.id,
+      nome: data.user.nome,
+      email: data.user.email,
+      cpf: data.user.cpf,
+      });
+    }
+
       navigate("/");
     } catch (error) {
       setErro("Erro ao conectar com o servidor");
@@ -59,6 +84,10 @@ export default function Login() {
       <div className="login-box">
         <h1>Login</h1>
         <p className="subtitle">Acesse sua conta</p>
+
+        {location.state?.sucesso && (
+          <p className="sucesso">{location.state.sucesso}</p>
+        )}
 
         <label>Email</label>
         <input

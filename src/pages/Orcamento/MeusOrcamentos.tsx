@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/MeusOrcamentos.css";
 
@@ -15,6 +16,7 @@ interface Orcamento {
 
 export default function MeusOrcamentos() {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [orcamentos, setOrcamentos] = useState<Orcamento[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
@@ -78,8 +80,8 @@ export default function MeusOrcamentos() {
     <div className="meus-orcamentos-container">
       <div className="meus-orcamentos-box">
         <h1>Meus Orçamentos</h1>
+        {user && <p className="usuario-logado">Olá, {user.nome}</p>}
         <p className="subtitle">Histórico de orçamentos solicitados</p>
-
         {erro && <div className="erro">{erro}</div>}
 
         {orcamentos.length === 0 ? (

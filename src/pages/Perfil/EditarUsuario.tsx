@@ -1,20 +1,24 @@
-import { useState } from "react";
-import "../../styles/Cadastro.css";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import "../../styles/EditarUsuario.css";
+import { AuthContext } from "../../context/AuthContext";
 
-export default function Cadastro() {
+export default function EditarUsuario() {
+  const { user } = useContext(AuthContext);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [sucesso, setSucesso] = useState("");
 
-  const navigate = useNavigate();
-
-  function validarEmail(email: string) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
+  useEffect(() => {
+    if (user) {
+      setNome(user.nome || "");
+      setEmail(user.email || "");
+      setCpf(formatarCPF(user.cpf || ""));
+    }
+  }, [user]);
 
   function formatarCPF(valor: string) {
     valor = valor.replace(/\D/g, "");
@@ -56,16 +60,12 @@ export default function Cadastro() {
     return true;
   }
 
-  const handleCadastro = async () => {
+  const handleSalvar = async () => {
     setErro("");
+    setSucesso("");
 
-    if (!nome || !email || !cpf || !senha || !confirmarSenha) {
-      setErro("Preencha todos os campos");
-      return;
-    }
-
-    if (!validarEmail(email)) {
-      setErro("Digite um email válido");
+    if (!nome || !cpf || !senha || !confirmarSenha) {
+      setErro("Preencha todos os campos obrigatórios");
       return;
     }
 
@@ -84,15 +84,25 @@ export default function Cadastro() {
       return;
     }
 
+    
+
     try {
-      const response = await fetch("http://localhost:3000/users/register", {
-        method: "POST",
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setErro("Usuário não autenticado");
+        return;
+      }
+
+
+      const response = await fetch(`http://localhost:3000/users/update/${user?.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           nome,
-          email,
           cpf: cpf.replace(/\D/g, ""),
           senha,
         }),
@@ -101,23 +111,20 @@ export default function Cadastro() {
       const data = await response.json();
 
       if (!response.ok) {
-        setErro(data.message || "Erro ao cadastrar");
+        setErro(data.message || "Erro ao atualizar usuário");
         return;
       }
 
-      navigate("/login", {
-        state: { sucesso: "Cadastro realizado com sucesso!" },
-      });
+      setSucesso("Dados atualizados com sucesso!");
     } catch (error) {
       setErro("Erro ao conectar com o servidor");
     }
   };
 
   return (
-    <div className="cadastro-container">
-      <div className="cadastro-box">
-        <h1>Cadastro</h1>
-        <p className="subtitle">Crie sua conta</p>
+    <div className="editar-usuario-container">
+      <div className="editar-usuario-box">
+        <h1>Editar Usuário</h1>
 
         <input
           type="text"
@@ -130,7 +137,7 @@ export default function Cadastro() {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          disabled
         />
 
         <input
@@ -142,28 +149,22 @@ export default function Cadastro() {
 
         <input
           type="password"
-          placeholder="Senha"
+          placeholder="Nova senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="Confirmar senha"
+          placeholder="Confirmar nova senha"
           value={confirmarSenha}
           onChange={(e) => setConfirmarSenha(e.target.value)}
         />
 
         {erro && <p className="erro">{erro}</p>}
+        {sucesso && <p className="sucesso">{sucesso}</p>}
 
-        <button onClick={handleCadastro}>
-          Cadastrar
-        </button>
-
-        <p className="link">
-          Já tem uma conta?{" "}
-          <span onClick={() => navigate("/login")}>Login</span>
-        </p>
+        <button onClick={handleSalvar}>Salvar alterações</button>
       </div>
     </div>
   );

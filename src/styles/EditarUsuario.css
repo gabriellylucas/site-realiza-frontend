@@ -1,4 +1,4 @@
-.login-container {
+.editar-usuario-container {
   height: 100vh;
   background: radial-gradient(circle at top, #0f172a, #020617);
   display: flex;
@@ -7,7 +7,7 @@
   font-family: Arial, sans-serif;
 }
 
-.login-box {
+.editar-usuario-box {
   background: linear-gradient(180deg, #111827, #0b1220);
   border-radius: 20px;
   padding: 50px 40px;
@@ -18,29 +18,14 @@
               0 25px 60px rgba(0,0,0,0.7);
 }
 
-.login-box h1 {
+.editar-usuario-box h1 {
   color: #e5e7eb;
   text-align: center;
   font-size: 36px;
-  margin-bottom: 5px; 
+  margin-bottom: 20px;
 }
 
-.login-container .subtitle{
-  text-align: center;
-  color: #ffffff;
-  font-size: 19px;
-  transform: translateX(100px) translateY(0px); 
-}
-
-.login-box label {
-  display: block;
-  color: #cbd5f5;
-  margin-bottom: 6px;
-  margin-top: 18px;
-  font-size: 14px;
-}
-
-.login-box input {
+.editar-usuario-box input {
   width: 100%;
   padding: 16px;
   border-radius: 12px;
@@ -51,17 +36,23 @@
   font-size: 15px;
 }
 
-.login-box input::placeholder {
+.editar-usuario-box input::placeholder {
   color: #6b7280;
 }
 
-.login-box input:focus {
+.editar-usuario-box input:focus {
   outline: none;
   border: 1px solid #ff6a00;
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.4);
 }
 
-.login-box button {
+.editar-usuario-box input:disabled {
+  background: #111827;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.editar-usuario-box button {
   width: 100%;
   padding: 16px;
   margin-top: 25px;
@@ -76,7 +67,7 @@
   transition: 0.3s;
 }
 
-.login-box button:hover {
+.editar-usuario-box button:hover {
   transform: translateY(-2px);
   box-shadow: 0 15px 35px rgba(255, 94, 0, 0.6);
 }
@@ -87,34 +78,6 @@
   margin-top: 5px;
 }
 
-.link {
-  text-align: center;
-  color: #9ca3af;
-  margin-top: 25px;
-  font-size: 14px;
-}
-
-.link a {
-  color: #ff6a00;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.login-container .footer{
-  position: absolute; 
-  bottom: 30px;     
-  left: 50%;
-  transform: translateX(-50%);
-  color: #9ca3af;
-  font-size: 14px;
-  background: transparent;
-  box-shadow: none;
-}
-
-.footer span {
-  color: #ff6a00;
-}
-
 .sucesso {
   background: #d1fae5;
   color: #065f46;
@@ -123,4 +86,5 @@
   margin-bottom: 10px;
   text-align: center;
   font-weight: 500;
+  font-size: 14px;
 }
